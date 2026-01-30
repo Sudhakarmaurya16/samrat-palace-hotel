@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Navigation ke liye
+import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
 import { fetchAllRooms } from "../services/api";
 
 function Home() {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // Hook to navigate
+  const navigate = useNavigate();
 
   const BACKEND_URL = "https://samrat-palace-hotel.onrender.com";
 
@@ -14,7 +14,6 @@ function Home() {
     const loadRooms = async () => {
       try {
         const data = await fetchAllRooms();
-        // Backend se jo data aaya use state me set karein
         const roomList = Array.isArray(data) ? data : data.rooms || [];
         setRooms(roomList);
       } catch (error) {
@@ -23,11 +22,9 @@ function Home() {
         setLoading(false);
       }
     };
-
     loadRooms();
   }, []);
 
-  // Image URL Helper
   const getImageUrl = (imagePath) => {
     if (!imagePath)
       return "https://via.placeholder.com/400x300?text=Luxury+Room";
@@ -35,15 +32,13 @@ function Home() {
     return `${BACKEND_URL}${imagePath}`;
   };
 
-  // Sirf pehle 3 rooms lene ke liye logic
   const featuredRooms = rooms.slice(0, 3);
 
   return (
     <div className="main-container">
-      {/* --- HERO SECTION --- */}
+      {/* HERO SECTION - (Same as before) */}
       <div className="hero-container">
         <div className="overlay"></div>
-
         <nav className="navbar">
           <div className="logo">SAMRAT</div>
           <ul className="nav-links">
@@ -72,7 +67,6 @@ function Home() {
               <p className="subtitle">
                 Luxury Hotel | Highway Location | City Comfort
               </p>
-
               <div className="button-group">
                 <button
                   className="cta-button primary"
@@ -107,26 +101,31 @@ function Home() {
                         src={getImageUrl(room.images?.[0])}
                         alt={room.title}
                       />
-                      <div className="price-tag">
-                        ₹{room.pricePerNight} / Night
-                      </div>
+                      {/* Price tag ko image ke andar hi rakha hai */}
+                      <div className="price-tag">₹{room.pricePerNight}</div>
                     </div>
+
                     <div className="room-info">
-                      <h3>{room.title}</h3>
-                      {/* Description ko short karne ke liye slice use kiya */}
-                      <p>{room.desc?.substring(0, 80)}...</p>
+                      <h3 className="room-title">{room.title}</h3>
+                      <div className="divider-small"></div>
+
+                      <p className="room-desc">
+                        {room.desc?.substring(0, 60)}...
+                      </p>
 
                       <div className="card-footer">
-                        <span className="amenities">
+                        <div className="amenity-item">
+                          {/* Icon Style */}
                           {room.fastFoodAvailable
                             ? "🍔 Fast Food"
                             : "☕ Breakfast"}
-                        </span>
+                        </div>
+
                         <button
-                          className="book-btn"
+                          className="view-details-btn"
                           onClick={() => navigate(`/rooms/${room._id}`)}
                         >
-                          View Details →
+                          VIEW DETAILS ➝
                         </button>
                       </div>
                     </div>
@@ -137,7 +136,6 @@ function Home() {
               )}
             </div>
 
-            {/* --- VIEW ALL BUTTON CONTAINER --- */}
             <div className="view-all-container">
               <button
                 className="view-all-btn"
