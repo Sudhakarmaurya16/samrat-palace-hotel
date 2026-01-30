@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://samrat-palace-hotel.onrender.com/api";
 
 // Helper to get Token
 const getAuthHeaders = () => {

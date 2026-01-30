@@ -8,7 +8,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate(); // Hook to navigate
 
-  const BACKEND_URL = "http://localhost:5000";
+  const BACKEND_URL = "https://samrat-palace-hotel.onrender.com";
 
   useEffect(() => {
     const loadRooms = async () => {
