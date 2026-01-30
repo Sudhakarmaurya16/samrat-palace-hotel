@@ -1,0 +1,261 @@
+/* --- Container - Global Dark Background --- */
+.admin-foods-container {
+    padding: 40px;
+    background-color: #1a1d21;
+    /* Dark Grey base */
+    min-height: 100vh;
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+}
+
+h2,
+h3 {
+    color: #ffc107;
+    /* Gold accent */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* --- GLASS CARD EFFECT (Form & List Wrapper) --- */
+.food-form-card,
+.food-list {
+    background: rgba(30, 35, 42, 0.7);
+    /* Semi-transparent */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+    /* Centered */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Deep Shadow */
+}
+
+/* --- FORM STYLING --- */
+.food-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 2 Column layout */
+    gap: 20px;
+}
+
+/* Make textarea and image full width */
+.food-form textarea,
+.food-form input[name="image"],
+.form-buttons {
+    grid-column: span 2;
+}
+
+/* --- 3D INPUTS (Neumorphism - Dabe hue inputs) --- */
+input,
+select,
+textarea {
+    background: #16181c;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+    /* Fix width issue */
+    box-sizing: border-box;
+    /* Padding andar rakhega */
+
+    /* Inner Shadow for Depth */
+    box-shadow: inset 4px 4px 8px #0c0d10,
+        inset -4px -4px 8px #202328;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    box-shadow: inset 2px 2px 4px #0c0d10,
+        inset -2px -2px 4px #202328,
+        0 0 5px rgba(255, 193, 7, 0.5);
+    /* Glow on focus */
+}
+
+/* --- BUTTONS CONTAINER --- */
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+/* --- COMMON BUTTON STYLES --- */
+button {
+    border: none;
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:active {
+    transform: scale(0.96);
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 1. ADD BUTTON (Green 3D) */
+.add-btn {
+    background: linear-gradient(145deg, #2ecc71, #27ae60);
+    color: white;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3),
+        -2px -2px 5px rgba(255, 255, 255, 0.1);
+    width: 100%;
+    /* Full width for Add */
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(46, 204, 113, 0.4);
+}
+
+/* 2. UPDATE BUTTON (Blue/Teal 3D) */
+.update-btn {
+    background: linear-gradient(145deg, #17a2b8, #138496);
+    color: white;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    /* Takes available space */
+}
+
+.update-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(23, 162, 184, 0.4);
+}
+
+/* 3. CANCEL BUTTON (Grey 3D) */
+.cancel-btn {
+    background: linear-gradient(145deg, #6c757d, #5a6268);
+    color: white;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cancel-btn:hover {
+    background: #7e868d;
+    transform: translateY(-2px);
+}
+
+/* 4. EDIT BUTTON (In Table - Gold 3D) */
+.edit-btn {
+    background: linear-gradient(145deg, #f1c40f, #f39c12);
+    color: #21252b;
+    /* Dark text for contrast */
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.edit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
+}
+
+/* 5. DELETE BUTTON (Red 3D) */
+.delete-btn {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.delete-btn:hover {
+    background: #ff5e57;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* --- TABLE STYLING --- */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    /* Rows ke beech gap */
+}
+
+thead th {
+    text-align: left;
+    padding: 15px;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* 3D Floating Rows */
+tbody tr {
+    background: #21252b;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Round corners for first and last cells in a row */
+tbody tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+tbody tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+tbody tr td {
+    padding: 15px;
+    vertical-align: middle;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* Row Hover Effect - Pop out */
+tbody tr:hover {
+    background: #2a2f36;
+    transform: scale(1.02);
+    /* Thoda zoom */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    position: relative;
+    cursor: default;
+}
+
+/* Food Image styling */
+.table-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffc107;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .food-form {
+        grid-template-columns: 1fr;
+    }
+
+    .food-form textarea,
+    .food-form input[name="image"],
+    .form-buttons {
+        grid-column: span 1;
+    }
+
+    /* Table scroll on mobile */
+    .food-list {
+        overflow-x: auto;
+    }
+}

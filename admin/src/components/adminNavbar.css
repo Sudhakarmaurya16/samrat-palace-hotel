@@ -1,0 +1,108 @@
+/* adminNavbar.css */
+
+/* Navbar Container - 3D Glass Effect */
+.admin-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    /* Glassmorphism & Transparency */
+    background: rgba(20, 25, 35, 0.85);
+    /* Dark Transparent Background */
+    backdrop-filter: blur(12px);
+    /* Blur effect piche ke content pe */
+    -webkit-backdrop-filter: blur(12px);
+
+    /* 3D Border & Shadow */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Brand / Logo Styling */
+.nav-brand .logo {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffc107;
+    /* Gold color for Samrat */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    /* 3D Text Shadow */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(255, 193, 7, 0.3);
+}
+
+/* Navigation Links Container */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Individual Links - 3D Hover Effect */
+.nav-item {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+
+    /* Lift up effect */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Logout Button - High 3D Gradient */
+.logout-btn {
+    background: linear-gradient(145deg, #ff4b2b, #ff416c);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    /* Deep Shadow for 3D Button */
+    box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 75, 43, 0.6);
+}
+
+.logout-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(255, 75, 43, 0.4);
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+    .admin-navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

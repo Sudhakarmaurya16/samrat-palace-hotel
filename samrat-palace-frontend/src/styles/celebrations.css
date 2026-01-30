@@ -1,0 +1,352 @@
+/* Import Luxury Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+/* ================= 1. GLOBAL RESET & FONTS ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.celebration-page {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background-color: #0f0f0f;
+    /* Deep Dark Background */
+    overflow-x: hidden;
+}
+
+/* ================= 2. HERO SECTION (VIDEO BACKGROUND) ================= */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Video Container & Iframe */
+.bg-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    /* User cannot click video */
+    overflow: hidden;
+}
+
+.bg-video-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%) scale(1.3);
+    /* Remove black bars */
+    object-fit: cover;
+}
+
+/* Dark Overlay */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* 60% Dark Overlay */
+    z-index: 1;
+}
+
+/* ================= 3. 3D GLASS FORM ================= */
+.form-container-3d {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 500px;
+    perspective: 1000px;
+    /* 3D Depth */
+}
+
+.glass-form {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    /* Gold Border Light */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    transform: rotateX(5deg);
+    /* Slight 3D Tilt */
+    transition: all 0.5s ease;
+}
+
+/* Form Hover Effect */
+.glass-form:hover {
+    transform: rotateX(0deg) scale(1.02);
+    border-color: #ffc107;
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.2);
+}
+
+/* Form Header */
+.form-header h4 {
+    color: #ffc107;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.form-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    background: linear-gradient(to right, #fff, #ffda75);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Inputs */
+.input-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.glow-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 15px;
+    color: #fff;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.glow-input:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+    background: rgba(0, 0, 0, 0.7);
+}
+
+textarea.glow-input {
+    resize: none;
+}
+
+/* --- GOLD BUTTON (Improved) --- */
+.gold-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #d4af37, #f1c40f, #d4af37);
+    background-size: 200% auto;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #121212;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    transition: 0.5s;
+}
+
+.gold-btn:hover {
+    background-position: right center;
+    /* Gradient Move Effect */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 193, 7, 0.6);
+}
+
+.gold-btn:disabled {
+    background: #555;
+    color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* ================= 4. GALLERY SECTIONS ================= */
+.gallery-section {
+    padding: 80px 5%;
+}
+
+.dark-bg {
+    background: #121212;
+}
+
+.gradient-bg {
+    background: linear-gradient(to bottom, #000, #1a1a1a);
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: #ffc107;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #ffc107;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* GRID SYSTEM */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* ================= 5. UNIVERSAL CARD STYLING (Fixed) ================= */
+.media-card {
+    position: relative;
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hover Effect: Lift Up */
+.media-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    border-color: #ffc107;
+}
+
+/* Image/Video Container */
+.media-card img,
+.media-card iframe,
+.gallery-media {
+    width: 100%;
+    height: 250px;
+    /* Fixed height for consistency */
+    object-fit: cover;
+    display: block;
+}
+
+/* Card Content Area */
+.media-info-text,
+.overlay-text {
+    padding: 20px;
+    background: linear-gradient(to top, #0f0f0f, #1a1a1a);
+    flex-grow: 1;
+    /* Ensures text area fills space */
+}
+
+/* Card Titles */
+.media-info-text h3,
+.overlay-text h3 {
+    font-family: 'Playfair Display', serif;
+    color: #ffc107;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+/* Card Description */
+.media-info-text p {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- OVERLAY TEXT FOR IMAGES (HOVER EFFECT) --- */
+.image-3d {
+    position: relative;
+}
+
+.image-3d .overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    transform: translateY(100%);
+    /* Hidden initially */
+    transition: transform 0.4s ease;
+}
+
+.image-3d:hover .overlay-text {
+    transform: translateY(0);
+    /* Show on hover */
+}
+
+/* --- COMING SOON BADGE --- */
+.coming-soon-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f1c40f;
+    color: black;
+    padding: 6px 15px;
+    font-weight: bold;
+    border-radius: 30px;
+    z-index: 5;
+    font-size: 0.8rem;
+    box-shadow: 0 5px 15px rgba(241, 196, 15, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ================= 6. RESPONSIVE DESIGN ================= */
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 0;
+    }
+
+    .glass-form {
+        transform: none !important;
+        /* Remove 3D tilt on mobile for better typing */
+        padding: 25px;
+        width: 95%;
+    }
+
+    .form-header h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

@@ -1,0 +1,152 @@
+/* login.css */
+
+/* 1. Main Screen Container - Center Alignment */
+.login-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Dark Gradient Background */
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+}
+
+/* 2. The Login Card - Glassmorphism Effect */
+.login-form {
+    background: rgba(255, 255, 255, 0.05);
+    /* Very transparent white */
+    backdrop-filter: blur(15px);
+    /* Blurs the background behind */
+    -webkit-backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+
+    /* 3D Floating Shadow */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Thin white border */
+    text-align: center;
+    animation: floatUp 0.8s ease-out;
+    /* Slide up animation */
+}
+
+/* Title Styling */
+.login-form h2 {
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Error Message */
+.error-msg {
+    background: rgba(231, 76, 60, 0.2);
+    color: #ff6b6b !important;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ff6b6b;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+/* Input Group Wrapper */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    color: #ddd;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 500;
+}
+
+/* 3D Inputs (Neumorphism - Inset Look) */
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(0, 0, 0, 0.3);
+    /* Dark transparent bg */
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+
+    /* Inner Shadow creates depth */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5),
+        inset -1px -1px 3px rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* Focus Effect - Glow */
+.input-group input:focus {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.3),
+        /* Gold Glow */
+        inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* 3D Login Button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: linear-gradient(145deg, #ffc107, #ff9800);
+    /* Gold Gradient */
+    color: #1a1d21;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    /* Button Shadow */
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+}
+
+.login-btn:hover {
+    transform: translateY(-3px);
+    /* Lifts button up */
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.5);
+    background: linear-gradient(145deg, #ffca28, #ffa726);
+}
+
+.login-btn:active {
+    transform: scale(0.98);
+    /* Press down effect */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation Keyframes */
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    .login-form {
+        padding: 30px 20px;
+    }
+
+    .login-form h2 {
+        font-size: 1.5rem;
+    }
+}

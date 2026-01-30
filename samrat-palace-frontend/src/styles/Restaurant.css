@@ -1,0 +1,377 @@
+/* =========================================
+   1. FONTS & GLOBAL VARIABLES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+:root {
+    --gold: #d4af37;
+    /* Royal Gold */
+    --gold-hover: #f1c40f;
+    /* Bright Gold */
+    --dark-bg: #0f172a;
+    /* Page Background */
+    --card-bg: #1e293b;
+    /* Card Background */
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    --shadow-3d: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--dark-bg);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-main);
+}
+
+/* =========================================
+   2. RESTAURANT PAGE STYLES (Parent File)
+   ========================================= */
+
+.restaurant-page {
+    min-height: 100vh;
+    padding-bottom: 4rem;
+}
+
+/* --- Hero Section with Parallax --- */
+.menu-hero {
+    height: 50vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)),
+        url('https://images.unsplash.com/photo-1514362545857-3bc16549766b?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Parallax effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 4px solid var(--gold);
+}
+
+.hero-content h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.gold-divider {
+    width: 100px;
+    height: 4px;
+    background: var(--gold);
+    margin: 15px auto;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--gold);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #e2e8f0;
+}
+
+/* --- Filter Tabs --- */
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 30px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    transform: translateY(-3px);
+}
+
+/* --- Menu Grid --- */
+.menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    /* Cards ke beech ka gap */
+    justify-content: center;
+}
+
+/* =========================================
+   3. FOOD CARD 3D STYLES (Child Component)
+   ========================================= */
+
+/* --- Outer Scene Container --- */
+.food-card-3d {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    /* Fixed Height */
+    perspective: 1000px;
+    /* 3D Depth ke liye zaroori */
+    z-index: 1;
+}
+
+/* --- Inner Moving Part --- */
+.card-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    /* 3D Animation Properties */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+    box-shadow: var(--shadow-soft);
+}
+
+/* --- Hover Effect (The 3D Magic) --- */
+.food-card-3d:hover .card-inner {
+    transform: translateY(-15px) rotateX(2deg);
+    /* Upar uthega aur halka tilt hoga */
+    box-shadow: var(--shadow-3d);
+    /* Gehri shadow */
+    border-color: rgba(212, 175, 55, 0.4);
+    /* Gold border shine */
+}
+
+/* --- Front Face Container --- */
+.card-front {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Border radius maintain karne ke liye */
+    border-radius: 16px;
+}
+
+/* --- Image Box (Top 55%) --- */
+.image-box {
+    width: 100%;
+    height: 55%;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--gold);
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* Hover Zoom */
+.food-card-3d:hover .image-box img {
+    transform: scale(1.15);
+}
+
+/* Price Badge */
+.price-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    z-index: 5;
+}
+
+/* --- Content Box (Bottom 45%) --- */
+.content-box {
+    height: 45%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to top, #141e30, #243b55);
+    /* Dark Gradient */
+}
+
+.content-box h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--text-main);
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.category-tag {
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    line-height: 1.4;
+
+    /* Text Limit (3 lines max) */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* --- Order Button --- */
+.order-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.order-btn:hover {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 15px var(--gold);
+    transform: scale(1.02);
+}
+
+.order-btn:active {
+    transform: scale(0.98);
+}
+
+/* =========================================
+   4. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .food-card-3d {
+        height: 450px;
+        /* Mobile par thoda height adjust */
+    }
+
+    .content-box {
+        padding: 15px;
+    }
+}
+
+/* --- EXISTING CSS ... --- */
+
+/* ✅ Floating Cart Bar */
+.floating-cart-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #1a1a1a, #2c3e50);
+    color: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: slideUp 0.3s ease-out;
+    border-top: 3px solid #d4af37;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-info span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f1c40f;
+}
+
+.cart-info small {
+    color: #bdc3c7;
+    font-size: 0.9rem;
+}
+
+.proceed-btn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 4px 10px rgba(39, 174, 96, 0.4);
+}
+
+.proceed-btn:hover {
+    background: #2ecc71;
+    transform: translateY(-2px);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .floating-cart-bar {
+        padding: 15px 20px;
+        flex-direction: row;
+        /* Keep row for small bars */
+    }
+
+    .proceed-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

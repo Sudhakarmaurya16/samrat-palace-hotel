@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* =========================
+   FOOTER STYLES
+========================= */
+
+.main-footer {
+  background-color: #0b0b0b;
+  color: #ddd;
+  padding: 50px 60px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  padding-bottom: 30px;
+}
+
+/* Brand Section */
+.footer-brand {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-brand h2 {
+  font-size: 28px;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.footer-brand h2 span {
+  color: #ffffff;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #bbb;
+}
+
+/* Luxury Font Feel */
+.luxury-font {
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* Links Section */
+.footer-links {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-links h4 {
+  color: gold;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: gold;
+}
+
+/* Contact Section */
+.footer-contact {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-contact h4 {
+  color: gold;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.footer-contact p {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: #999;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links ul {
+    align-items: center;
+  }
+}

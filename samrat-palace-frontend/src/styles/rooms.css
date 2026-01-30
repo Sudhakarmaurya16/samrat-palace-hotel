@@ -1,0 +1,285 @@
+/* ===== PAGE WRAPPER ===== */
+.rooms-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+  perspective: 1200px;
+}
+
+/* ===== PAGE TITLE ===== */
+.rooms-container h1 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 40px;
+  color: forestgreen;
+}
+
+/* ===== GRID ===== */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* ===== ROOM CARD ===== */
+.room-card {
+  background: linear-gradient(145deg, #ffffff, #f1f5f9);
+  border-radius: 22px;
+  padding: 18px;
+
+  box-shadow:
+    18px 18px 40px rgba(0, 0, 0, 0.25),
+    -10px -10px 25px rgba(255, 255, 255, 0.9);
+
+  transform-style: preserve-3d;
+  transition: all 0.4s ease;
+}
+
+/* ===== 3D HOVER ===== */
+.room-card:hover {
+  transform: translateY(-10px) rotateX(6deg);
+  box-shadow:
+    0 35px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* ===== IMAGE ===== */
+.room-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 18px;
+
+  transform: translateZ(25px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== CONTENT ===== */
+.room-card h3 {
+  margin-top: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #020617;
+}
+
+.room-card p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* ===== BUTTON ===== */
+.room-card button {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px;
+
+  background: linear-gradient(145deg, #000000, #1f2937);
+  color: #facc15;
+
+  border: none;
+  border-radius: 16px;
+
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.7),
+    inset 0 2px 6px rgba(255, 255, 255, 0.2);
+
+  transition: 0.3s;
+}
+
+/* ===== BUTTON HOVER ===== */
+.room-card button:hover {
+  transform: translateY(-4px) translateZ(20px);
+  box-shadow:
+    0 25px 45px rgba(0, 0, 0, 0.85),
+    inset 0 2px 6px rgba(255, 255, 255, 0.3);
+}
+
+/* ===== LINK RESET ===== */
+.room-card a {
+  text-decoration: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .rooms-container {
+    padding: 20px;
+  }
+
+  .rooms-container h1 {
+    font-size: 28px;
+  }
+}
+
+.booked-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(231, 76, 60, 0.9);
+  /* Red background */
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  border: 2px solid white;
+}
+
+.room-img-wrapper {
+  position: relative;
+}
+
+.view-btn.disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  color: #ccc;
+}
+
+/* --- Button Styles --- */
+.room-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.view-btn {
+  flex: 1;
+  background: #d4af37;
+  border: none;
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.check-dates-btn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.check-dates-btn:hover {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+/* --- MODAL (POPUP) STYLES --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  /* Dark background behind popup */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: #1a1a1a;
+  /* Dark Card */
+  width: 90%;
+  max-width: 400px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+  color: white;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 15px 20px;
+  background: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #fff;
+}
+
+.modal-body {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.booked-dates-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.booked-dates-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2a2a2a;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border-left: 3px solid #ff4d4d;
+  /* Red line for booked */
+}
+
+.date-range {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+.status-badge {
+  background: rgba(255, 77, 77, 0.2);
+  color: #ff4d4d;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.no-bookings {
+  text-align: center;
+  color: #2ecc71;
+  padding: 20px;
+}

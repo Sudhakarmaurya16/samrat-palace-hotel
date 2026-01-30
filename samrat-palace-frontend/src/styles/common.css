@@ -1,0 +1,23 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+textarea {
+  padding: 8px;
+  font-size: 14px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: gold;
+  border: none;
+  cursor: pointer;
+}
+select {
+  padding: 8px;
+  font-size: 14px;
+}

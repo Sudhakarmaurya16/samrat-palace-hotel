@@ -1,0 +1,514 @@
+/* Google Fonts Import for Luxury Feel */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+:root {
+    --gold: #d4af37;
+    --gold-light: #f3e5ab;
+    --dark-bg: #0f172a;
+    --glass: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--dark-bg);
+    overflow-x: hidden;
+}
+
+/* --- Hero Container & Background --- */
+.hero-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Hotel Luxury Image Background */
+    background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 1;
+}
+
+/* --- Navigation --- */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links li {
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-links li:hover {
+    color: var(--gold);
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.5rem 1.5rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav-btn:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+/* --- 3D Perspective Wrapper --- */
+.perspective-container {
+    perspective: 1000px;
+    /* Creates depth */
+    z-index: 5;
+}
+
+/* --- Main 3D Card (Glassmorphism) --- */
+.card-3d {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    padding: 4rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 600px;
+    box-shadow:
+        0 25px 45px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(255, 255, 255, 0.05);
+
+    /* The 3D Animation */
+    transform-style: preserve-3d;
+    animation: floatCard 6s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+
+    0%,
+    100% {
+        transform: translateY(0) rotateX(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotateX(2deg);
+    }
+}
+
+/* --- Content Styling --- */
+.hotel-badge {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    border-bottom: 1px solid var(--gold);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.title {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    color: white;
+    line-height: 1.1;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+    transform: translateZ(50px);
+    /* Pops text out in 3D */
+}
+
+.title .highlight {
+    color: var(--gold);
+}
+
+.divider-design {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 1.5rem 0;
+    opacity: 0.8;
+}
+
+.divider-design .line {
+    height: 1px;
+    width: 50px;
+    background: var(--gold);
+}
+
+.divider-design .diamond {
+    color: var(--gold);
+    font-size: 1.2rem;
+}
+
+.subtitle {
+    color: #e0e0e0;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 2.5rem;
+    transform: translateZ(30px);
+}
+
+/* --- Features Grid --- */
+.features-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    transform: translateZ(40px);
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-size: 0.8rem;
+    gap: 0.5rem;
+}
+
+.feature-item .icon {
+    font-style: normal;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 5px var(--gold));
+}
+
+/* --- Buttons --- */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    transform: translateZ(60px);
+    /* Buttons pop out most */
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-button.primary {
+    background: linear-gradient(45deg, var(--gold), #b8860b);
+    color: #000;
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Decorative Floating Shapes (Abstract 3D) --- */
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 2;
+    animation: floatOrb 10s infinite alternate;
+}
+
+.orb-1 {
+    width: 300px;
+    height: 300px;
+    background: rgba(212, 175, 55, 0.2);
+    top: -50px;
+    left: -50px;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: rgba(20, 50, 200, 0.2);
+    bottom: -100px;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+@keyframes floatOrb {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(30px, 50px);
+    }
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .card-3d {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    /* Simple hide for mobile example */
+    .features-grid {
+        gap: 1rem;
+    }
+}
+/* --- ROOMS SECTION STYLING --- */
+
+.rooms-section {
+  padding: 5rem 10%;
+  background-color: #0b1120; /* Slightly lighter than hero bg */
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.sub-heading {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  color: #fff;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.gold-divider {
+  width: 80px;
+  height: 3px;
+  background: var(--gold);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+/* Grid Layout */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+
+/* --- 3D Room Card --- */
+.room-card {
+  background: #1a2236;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+/* Hover Effect: Card Lift & Glow */
+.room-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border-color: var(--gold);
+}
+
+/* Image Styling */
+.img-wrapper {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* Hover Effect: Image Zoom */
+.room-card:hover .img-wrapper img {
+  transform: scale(1.1);
+}
+
+.price-tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--gold);
+  color: #000;
+  padding: 5px 15px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Card Content */
+.room-info {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.room-info h3 {
+  font-family: 'Cinzel', serif;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.room-info p {
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 1rem;
+}
+
+.amenities {
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.book-btn {
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.book-btn:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .section-title { font-size: 2rem; }
+  .rooms-section { padding: 4rem 5%; }
+}
+/* --- VIEW ALL BUTTON STYLING --- */
+
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem; /* Grid se thoda door */
+  padding-bottom: 2rem;
+}
+
+.view-all-btn {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  padding: 1rem 3rem;
+  font-family: 'Cinzel', serif; /* Royal font */
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Hover Effect - Gold fill ho jayega */
+.view-all-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--gold);
+  z-index: -1;
+  transition: width 0.4s ease;
+}
+
+.view-all-btn:hover::before {
+  width: 100%;
+}
+
+.view-all-btn:hover {
+  color: #000; /* Text black ho jayega gold background par */
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+/* Loading & No Data Text */
+.loading-text, .no-rooms {
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: 'Cinzel', serif;
+}

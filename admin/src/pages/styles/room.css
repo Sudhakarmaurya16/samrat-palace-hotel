@@ -1,0 +1,286 @@
+/* --- GLOBAL CONTAINER --- */
+.rooms-container {
+  padding: 40px;
+  background-color: #1a1d21;
+  /* Deep Dark Background */
+  min-height: 100vh;
+  color: #e0e0e0;
+  font-family: 'Poppins', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #ffc107;
+  /* Gold Accent */
+  text-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+  margin-bottom: 40px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* --- 3D GLASS FORM CARD --- */
+.room-form-card {
+  background: rgba(33, 37, 43, 0.7);
+  backdrop-filter: blur(12px);
+  /* Glass Effect */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 35px;
+  border-radius: 20px;
+  max-width: 850px;
+  margin: 0 auto 60px auto;
+
+  /* 3D Floating Shadow */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.room-form-card:hover {
+  transform: translateY(-5px);
+  /* Halka sa upar uthega */
+  border-color: rgba(255, 193, 7, 0.3);
+}
+
+.room-form-card h3 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #ffc107;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* --- FORM GRID LAYOUT --- */
+.room-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* 2 Column */
+  gap: 20px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- NEUMORPHIC INPUTS (Dabe hue boxes) --- */
+input,
+textarea {
+  width: 100%;
+  padding: 15px;
+  background-color: #16181c;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+
+  /* Inner Shadow for Depth */
+  box-shadow: inset 4px 4px 8px #0c0d10,
+    inset -4px -4px 8px #202328;
+}
+
+input:focus,
+textarea:focus {
+  background-color: #1b1e24;
+  box-shadow: inset 2px 2px 5px #0c0d10,
+    inset -2px -2px 5px #202328,
+    0 0 8px rgba(255, 193, 7, 0.4);
+  /* Gold Glow */
+  transform: scale(1.01);
+}
+
+/* --- 3D ADD BUTTON --- */
+.add-room-btn {
+  grid-column: span 2;
+  background: linear-gradient(145deg, #00c853, #009624);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  /* 3D Pop Effect */
+  box-shadow: 0 6px 0 #00600f,
+    0 15px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.1s;
+}
+
+.add-room-btn:active {
+  transform: translateY(6px);
+  /* Press hone par neeche dabega */
+  box-shadow: 0 0 0 #00600f, inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* --- ROOMS GRID SECTION --- */
+.rooms-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* --- INDIVIDUAL ROOM CARD --- */
+.room-admin-card {
+  background: #21252b;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+
+  /* Floating Card Shadow */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.room-admin-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border-color: #ffc107;
+}
+
+/* Image Styling */
+.room-image-container {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 3px solid #333;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+}
+
+.room-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.room-admin-card:hover .room-preview-img {
+  transform: scale(1.1);
+  /* Zoom effect on hover */
+}
+
+/* Labels */
+.room-admin-card label {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 5px;
+}
+
+/* --- TOGGLES SECTION --- */
+.toggle-group {
+  background: #16181c;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: inset 3px 3px 6px #0c0d10;
+  margin-top: 5px;
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.toggle-row:last-child {
+  margin-bottom: 0;
+}
+
+/* 3D Toggle Buttons */
+.toggle-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  min-width: 80px;
+}
+
+.toggle-btn.on {
+  background: #2ecc71;
+  color: #fff;
+  box-shadow: 0 4px 0 #27ae60;
+}
+
+.toggle-btn.on:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.toggle-btn.off {
+  background: #e74c3c;
+  color: #fff;
+  box-shadow: 0 4px 0 #c0392b;
+}
+
+.toggle-btn.off:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+/* --- 3D DELETE BUTTON --- */
+.delete-room-btn {
+  background: linear-gradient(145deg, #ff5252, #d50000);
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  letter-spacing: 1px;
+
+  box-shadow: 0 5px 0 #b71c1c,
+    0 10px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.1s;
+}
+
+.delete-room-btn:hover {
+  filter: brightness(1.1);
+}
+
+.delete-room-btn:active {
+  transform: translateY(5px);
+  box-shadow: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .room-form {
+    grid-template-columns: 1fr;
+    /* Single column on mobile */
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+
+  .rooms-container {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,237 @@
+/* myBookings.css */
+
+/* 1. Page Background */
+.my-bookings-page {
+    min-height: 100vh;
+    background-color: #1a1d21;
+    /* Global Dark Theme */
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.booking-container {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* 2. Typography */
+.page-title {
+    color: #ffc107;
+    /* Gold */
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    color: #b0b3b8;
+    margin-bottom: 30px;
+}
+
+/* 3. 3D Search Bar */
+.search-wrapper {
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 40px;
+}
+
+.search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #666;
+}
+
+.search-btn {
+    background: linear-gradient(135deg, #ffc107, #ff9800);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 40px;
+    color: #1a1d21;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.6);
+}
+
+.search-btn:disabled {
+    background: #555;
+    color: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 4. 3D Booking Cards */
+.results-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user-booking-card {
+    background: rgba(30, 35, 42, 0.6);
+    /* Glass Dark */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+
+    /* Floating Effect */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    animation: slideUp 0.5s ease-out;
+}
+
+.user-booking-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 193, 7, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Card Content */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.card-top h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+.status-pill {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-green {
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+.status-blue {
+    background: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+}
+
+.status-orange {
+    background: rgba(230, 126, 34, 0.2);
+    color: #e67e22;
+}
+
+.status-red {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+/* Grid Info */
+.card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 3px;
+}
+
+.info-group span {
+    color: #ddd;
+    font-weight: 500;
+}
+
+.info-group .amount {
+    color: #ffc107;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Receipt Button */
+.receipt-btn {
+    display: block;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.receipt-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffc107;
+    border-color: #ffc107;
+}
+
+/* No Result */
+.no-result-card {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    color: #888;
+}
+
+/* Animation */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .search-wrapper {
+        flex-direction: column;
+        border-radius: 20px;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+}

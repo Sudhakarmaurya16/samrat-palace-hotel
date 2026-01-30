@@ -1,0 +1,251 @@
+/* receipt.css */
+
+/* 1. Page Background - Dark Desk Feel */
+.receipt-page {
+    min-height: 100vh;
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    /* Thermal Printer Font */
+}
+
+.receipt-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 2. Error & Loading States */
+.receipt-error,
+.receipt-loading {
+    color: #fff;
+    text-align: center;
+}
+
+.receipt-error h2 {
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* 3. THE PAPER RECEIPT (3D Object) */
+.receipt-paper {
+    background: #fffdf0;
+    /* Slightly Off-White Paper */
+    width: 360px;
+    padding: 30px 25px 50px 25px;
+    /* Bottom padding for edge */
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    /* Deep Shadow */
+    transform: rotate(-1deg);
+    /* Natural Tilt */
+    transition: transform 0.3s ease;
+}
+
+.receipt-paper:hover {
+    transform: rotate(0deg) scale(1.01);
+    /* Straighten on hover */
+}
+
+/* 4. Jagged Edge (Torn Paper Effect) */
+.receipt-paper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(135deg, transparent 75%, #2c3e50 75%) 0 50%,
+        linear-gradient(45deg, transparent 75%, #2c3e50 75%) 0 50%;
+    background-size: 20px 20px;
+    /* Zig Zag Size */
+    background-repeat: repeat-x;
+}
+
+/* 5. Header & Text Styling */
+.receipt-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.receipt-header h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #000;
+    letter-spacing: -1px;
+}
+
+.receipt-header p {
+    margin: 2px 0;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.dotted-line {
+    border-bottom: 2px dashed #bbb;
+    margin: 15px 0;
+}
+
+.solid-line {
+    border-bottom: 2px solid #000;
+    margin: 15px 0;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.row span:last-child {
+    font-weight: bold;
+    text-align: right;
+    color: #000;
+}
+
+/* Grand Total Highlight */
+.grand-total {
+    font-size: 1.2rem;
+    font-weight: 900;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 5px;
+}
+
+/* 6. STATUS STAMP (Rubber Stamp Effect) */
+.stamp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    border: 5px solid;
+    padding: 5px 20px;
+    opacity: 0.2;
+    /* Watermark style */
+    pointer-events: none;
+    border-radius: 10px;
+    font-family: sans-serif;
+}
+
+.is-paid {
+    color: #27ae60;
+    border-color: #27ae60;
+    opacity: 0.8;
+    mix-blend-mode: multiply;
+}
+
+.is-due {
+    color: #c0392b;
+    border-color: #c0392b;
+    opacity: 0.8;
+    mix-blend-mode: multiply;
+}
+
+/* 7. Footer & Barcode */
+.receipt-footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 20px;
+}
+
+.barcode {
+    font-family: 'Libre Barcode 39', cursive;
+    /* Agar font load ho to */
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    margin-top: 10px;
+    font-weight: lighter;
+    transform: scaleY(1.5);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* 8. Buttons */
+.receipt-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.print-btn {
+    background: #ffc107;
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+    transition: transform 0.2s;
+}
+
+.print-btn:hover {
+    transform: translateY(-2px);
+}
+
+.close-btn {
+    background: transparent;
+    color: #fff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+/* --- PRINT MEDIA QUERY (Paper Print Settings) --- */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    /* Sab kuch chupao */
+    .receipt-page {
+        background: none;
+        padding: 0;
+        display: block;
+    }
+
+    .receipt-paper,
+    .receipt-paper * {
+        visibility: visible;
+        /* Sirf Receipt dikhao */
+    }
+
+    .receipt-paper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        transform: none;
+        /* Rotate hatao */
+        box-shadow: none;
+        /* Shadow hatao for clean print */
+        padding-bottom: 0;
+    }
+
+    .receipt-paper::after {
+        display: none;
+    }
+
+    /* Zig zag edge print me nahi chahiye */
+    .receipt-actions {
+        display: none;
+    }
+
+    /* Buttons chupao */
+}

@@ -1,0 +1,287 @@
+/* =========================================
+   1. GLOBAL CONTAINER & LAYOUT
+   ========================================= */
+.bookings-container {
+    min-height: 100vh;
+    padding: 40px;
+    background: linear-gradient(135deg, #1a1c20 0%, #0f1012 100%);
+    /* Deep Dark BG */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ecf0f1;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #d4af37, #f1c40f);
+    /* Gold Gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Section Headers */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #fff;
+}
+
+.count-badge {
+    background: #3498db;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+/* =========================================
+   2. GRID SYSTEM (Responsive)
+   ========================================= */
+.bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    /* Auto-fit cards */
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.no-data {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+/* =========================================
+   3. CARD STYLING (Glassmorphism)
+   ========================================= */
+.booking-card {
+    background: rgba(30, 35, 40, 0.7);
+    /* Semi-transparent */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Card Header */
+.card-header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+}
+
+/* Card Body */
+.card-body {
+    padding: 20px;
+    flex: 1;
+    /* Pushes footer down */
+}
+
+.card-body p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    color: #bdc3c7;
+}
+
+.card-body strong {
+    color: #ecf0f1;
+}
+
+/* Note Text */
+.note-text {
+    font-style: italic;
+    font-size: 0.85rem;
+    background: rgba(241, 196, 15, 0.1);
+    padding: 8px;
+    border-radius: 6px;
+    color: #f1c40f !important;
+    margin-top: 10px !important;
+}
+
+/* =========================================
+   4. TYPE SPECIFIC STYLES
+   ========================================= */
+
+/* Room Card - Blue Accent */
+.room-card {
+    border-top: 4px solid #3498db;
+}
+
+.price-badge {
+    background: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* Table Card - Orange Accent */
+.table-card {
+    border-top: 4px solid #e67e22;
+}
+
+.time-badge {
+    background: rgba(230, 126, 34, 0.2);
+    color: #e67e22;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+/* Event Card - Gold Accent */
+.event-card {
+    border-top: 4px solid #f1c40f;
+}
+
+/* =========================================
+   5. INNER COMPONENTS (Date Box, Food List)
+   ========================================= */
+
+/* Date Info Box (New Addition) */
+.date-info-box {
+    background: rgba(0, 0, 0, 0.3) !important;
+    /* Dark background */
+    border-left: 3px solid #3498db !important;
+    color: #ddd;
+}
+
+/* Food List Box */
+.food-list-box {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.food-list-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 5px 0;
+}
+
+.food-list-box li {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding: 3px 0;
+    color: #bdc3c7;
+}
+
+.bill-summary {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+/* =========================================
+   6. ACTIONS & FOOTER
+   ========================================= */
+.card-footer {
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Status Dropdown */
+.status-dropdown {
+    width: 100%;
+    padding: 10px;
+    background: #2c3e50;
+    border: 1px solid #34495e;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.status-dropdown:hover {
+    background: #34495e;
+}
+
+/* Delete Button */
+.delete-btn {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #c0392b, #e74c3c) !important;
+    color: white;
+    border: none;
+    border-radius: 8px !important;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+}
+
+/* =========================================
+   7. RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .bookings-container {
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .bookings-grid {
+        grid-template-columns: 1fr;
+        /* Single column on mobile */
+    }
+}
