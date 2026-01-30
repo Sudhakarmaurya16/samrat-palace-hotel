@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Navigation ke liye
-import "../styles/Home.css";
+import "../styles/home.css";
 import { fetchAllRooms } from "../services/api";
 
 function Home() {
