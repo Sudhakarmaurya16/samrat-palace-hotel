@@ -1,4 +1,16 @@
-/* Container styling with 3D background */
+/* =========================================
+   1. GLOBAL & FONTS
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    /* Ensures padding doesn't break width */
+}
+
+/* =========================================
+   2. MAIN LAYOUT
+   ========================================= */
 .room-page {
     display: flex;
     justify-content: center;
@@ -6,24 +18,24 @@
     padding: 40px;
     min-height: 100vh;
     background: radial-gradient(circle at center, #2c3e50, #000000);
-    /* Dark 3D background */
     font-family: 'Poppins', sans-serif;
-    /* Modern font */
     color: #fff;
+    width: 100%;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
 }
 
-/* Common Card Styling for 3D effect */
+/* Common Card Styling (Glassmorphism) */
 .room-info,
 .booking-card {
     background: rgba(255, 255, 255, 0.1);
-    /* Glassmorphism effect */
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 25px;
     box-shadow:
         10px 10px 20px rgba(0, 0, 0, 0.5),
         -5px -5px 15px rgba(255, 255, 255, 0.05);
-    /* Neumorphism shadow */
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease;
 }
@@ -31,18 +43,20 @@
 .room-info:hover,
 .booking-card:hover {
     transform: translateY(-5px);
-    /* Lift on hover */
 }
 
-/* Left Section: Room Info */
+/* =========================================
+   3. LEFT SECTION: ROOM INFO
+   ========================================= */
 .room-info {
     flex: 2;
-    max-width: 800px;
+    /* Takes 2/3 space */
+    max-width: 900px;
+    width: 100%;
 }
 
 .back-btn {
     background: linear-gradient(145deg, #ff6b6b, #ee5253);
-    /* 3D Button Gradient */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -52,21 +66,23 @@
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease;
     font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .back-btn:active {
     transform: scale(0.95);
-    /* Button press effect */
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .detail-image-container {
     width: 100%;
-    height: 400px;
+    height: 450px;
+    /* Default Desktop Height */
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -79,16 +95,14 @@
 
 .detail-room-img:hover {
     transform: scale(1.05);
-    /* Zoom effect */
 }
 
 .room-info h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* Text shadow for depth */
     color: #f1c40f;
-    /* Gold color for title */
+    line-height: 1.2;
 }
 
 .room-badge {
@@ -103,16 +117,17 @@
 }
 
 .room-desc {
-    line-height: 1.6;
-    color: #bdc3c7;
-    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #ecf0f1;
+    margin-bottom: 25px;
+    font-size: 1rem;
 }
 
 .amenities {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .badge {
@@ -120,32 +135,41 @@
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .room-info h3 {
     font-size: 2rem;
     color: #2ecc71;
+    margin-top: 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .room-info h3 small {
     font-size: 1rem;
-    color: #95a5a6;
+    color: #bdc3c7;
+    margin-left: 5px;
 }
 
-
-/* Right Section: Booking Card */
+/* =========================================
+   4. RIGHT SECTION: BOOKING CARD
+   ========================================= */
 .booking-card {
     flex: 1;
+    /* Takes 1/3 space */
     max-width: 400px;
+    width: 100%;
     height: fit-content;
     position: sticky;
-    top: 20px;
+    /* Sticky on Desktop */
+    top: 40px;
     background: linear-gradient(145deg, #2c3e50, #34495e);
-    /* Darker gradient for contrast */
+    z-index: 10;
 }
 
 .booking-card h2 {
@@ -156,6 +180,7 @@
     letter-spacing: 1px;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 10px;
+    font-size: 1.5rem;
 }
 
 .booking-card input,
@@ -168,8 +193,8 @@
     background: rgba(0, 0, 0, 0.3);
     color: #fff;
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
-    /* Inner shadow for depth */
     font-size: 1rem;
+    font-family: inherit;
 }
 
 .booking-card input:focus,
@@ -178,27 +203,31 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
+/* Check-in / Check-out Row */
 .date-row {
     display: flex;
     gap: 15px;
+    margin-bottom: 15px;
 }
 
 .date-row div {
     flex: 1;
+    width: 100%;
+    /* Ensures input takes full width of container */
 }
 
-.date-row label {
+.date-row label,
+.food-selection label {
     display: block;
     font-size: 0.9rem;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     color: #bdc3c7;
+    font-weight: 500;
 }
 
 .food-selection label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
     color: #f39c12;
+    font-weight: bold;
 }
 
 .summary-box {
@@ -212,17 +241,20 @@
 .summary-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-size: 0.95rem;
+    color: #ecf0f1;
 }
 
 .total-row {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: #fff;
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
 }
 
 .highlight {
@@ -232,12 +264,11 @@
 
 .book-btn {
     width: 100%;
-    padding: 15px;
-    margin-top: 20px;
+    padding: 16px;
+    margin-top: 25px;
     border: none;
     border-radius: 8px;
     background: linear-gradient(145deg, #27ae60, #2ecc71);
-    /* Green 3D Gradient */
     color: white;
     font-size: 1.1rem;
     font-weight: bold;
@@ -245,6 +276,7 @@
     box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
     transition: all 0.3s ease;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .book-btn:hover {
@@ -259,69 +291,49 @@
 
 .unavailable-msg {
     text-align: center;
-    color: #e74c3c;
+    color: #ff6b6b;
     font-weight: bold;
     margin-top: 20px;
-    padding: 10px;
+    padding: 12px;
     background: rgba(231, 76, 60, 0.1);
-    border-radius: 5px;
+    border-radius: 8px;
     border: 1px solid rgba(231, 76, 60, 0.3);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .room-page {
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    .room-info,
-    .booking-card {
-        width: 100%;
-        max-width: none;
-    }
-
-    .detail-image-container {
-        height: 250px;
-    }
-}
-
-/* --- Add this to your existing RoomDetails.css --- */
-
-/* Rules Section in Sidebar */
+/* =========================================
+   5. RULES SECTION & MODAL
+   ========================================= */
 .rules-section {
     margin-top: 30px;
     background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
+    padding: 25px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .rules-section h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #f1c40f;
     margin-bottom: 15px;
-    text-shadow: none;
-    /* Resetting text shadow for cleaner look here */
 }
 
 .rules-list {
     list-style-type: disc;
     padding-left: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: #bdc3c7;
 }
 
 .rules-list li {
-    margin-bottom: 8px;
-    line-height: 1.5;
+    margin-bottom: 10px;
+    line-height: 1.6;
 }
 
 .view-more-btn {
     background: transparent;
     border: 1px solid #3498db;
     color: #3498db;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
@@ -333,34 +345,35 @@
     color: white;
 }
 
-/* --- Modal Styles --- */
+/* Modal Overlay */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    /* Dark semi-transparent background */
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
+    padding: 20px;
     animation: fadeIn 0.3s ease-out;
 }
 
 .modal-content {
     background: #2c3e50;
-    /* Match your theme's dark background */
-    width: 90%;
+    width: 100%;
     max-width: 600px;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
     animation: slideUp 0.3s ease-out;
-    overflow: hidden;
-    /* Ensure content stays within rounded corners */
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    /* Don't exceed screen height */
 }
 
 .modal-header {
@@ -374,7 +387,7 @@
 
 .modal-header h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #f1c40f;
 }
 
@@ -385,35 +398,32 @@
     font-size: 2rem;
     cursor: pointer;
     line-height: 1;
-    padding: 0;
+    padding: 0 5px;
 }
 
 .close-modal-btn:hover {
-    color: white;
+    color: #fff;
 }
 
 .modal-body {
     padding: 25px;
-    max-height: 60vh;
-    /* Allow scrolling if content is long */
     overflow-y: auto;
+    /* Scrollable content */
 }
 
 .full-rules-list {
     list-style-type: decimal;
-    /* Numbered list for full rules */
     padding-left: 20px;
     color: #ecf0f1;
 }
 
 .full-rules-list li {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     line-height: 1.6;
-    font-size: 1.05rem;
 }
 
 .modal-footer {
-    padding: 15px 25px;
+    padding: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: right;
     background: rgba(255, 255, 255, 0.05);
@@ -423,11 +433,10 @@
     background: #e74c3c;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 25px;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    transition: background 0.2s;
 }
 
 .modal-action-btn:hover {
@@ -448,11 +457,136 @@
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* =========================================
+   6. RESPONSIVE MEDIA QUERIES
+   ========================================= */
+
+/* Tablets & Small Laptops (Max Width: 1024px) */
+@media (max-width: 1024px) {
+    .room-page {
+        padding: 30px;
+        gap: 20px;
+    }
+
+    .room-info {
+        max-width: 100%;
+        flex: 1.5;
+    }
+
+    .booking-card {
+        max-width: 350px;
+    }
+
+    .room-info h1 {
+        font-size: 2rem;
+    }
+
+    .detail-image-container {
+        height: 350px;
+    }
+}
+
+/* Mobile Devices (Max Width: 768px) */
+@media (max-width: 768px) {
+    .room-page {
+        flex-direction: column;
+        /* Stack layout */
+        padding: 20px 15px;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .room-info,
+    .booking-card {
+        width: 100%;
+        max-width: 100%;
+        flex: none;
+    }
+
+    /* Remove sticky position on mobile for better UX */
+    .booking-card {
+        position: relative;
+        top: 0;
+        order: 2;
+        /* Optional: Put booking card below info */
+        margin-top: 10px;
+    }
+
+    .room-info {
+        order: 1;
+    }
+
+    .detail-image-container {
+        height: 300px;
+    }
+
+    .room-info h1 {
+        font-size: 1.8rem;
+    }
+
+    .amenities {
+        gap: 8px;
+    }
+
+    .badge {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
+
+/* Small Mobile Phones (Max Width: 480px) */
+@media (max-width: 480px) {
+    .room-page {
+        padding: 15px 10px;
+    }
+
+    .room-info,
+    .booking-card {
+        padding: 20px 15px;
+    }
+
+    .detail-image-container {
+        height: 220px;
+        /* Smaller image height */
+    }
+
+    /* Stack Check-in and Check-out inputs */
+    .date-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .room-info h1 {
+        font-size: 1.6rem;
+    }
+
+    .room-info h3 {
+        font-size: 1.4rem;
+    }
+
+    .book-btn {
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    .modal-content {
+        max-height: 85vh;
+    }
+
+    .modal-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .full-rules-list li {
+        font-size: 0.95rem;
     }
 }
