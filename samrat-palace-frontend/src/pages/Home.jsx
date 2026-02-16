@@ -1,147 +1,218 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
-import { fetchAllRooms } from "../services/api";
+import { fetchAllRooms, fetchAllFoods } from "../services/api"; // fetchAllFoods import kiya
 
 function Home() {
   const [rooms, setRooms] = useState([]);
+  const [foods, setFoods] = useState([]); // Food state
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const BACKEND_URL = "https://samrat-palace-hotel.onrender.com";
 
   useEffect(() => {
-    const loadRooms = async () => {
+    const loadData = async () => {
       try {
-        const data = await fetchAllRooms();
-        const roomList = Array.isArray(data) ? data : data.rooms || [];
+        // Dono APIs ek sath call karenge using Promise.all
+        const [roomData, foodData] = await Promise.all([
+          fetchAllRooms(),
+          fetchAllFoods(),
+        ]);
+
+        const roomList = Array.isArray(roomData)
+          ? roomData
+          : roomData.rooms || [];
         setRooms(roomList);
+
+        const foodList = Array.isArray(foodData)
+          ? foodData
+          : foodData.foods || [];
+        setFoods(foodList);
       } catch (error) {
-        console.error("Failed to load rooms", error);
+        console.error("Failed to load data", error);
       } finally {
         setLoading(false);
       }
     };
-    loadRooms();
+    loadData();
   }, []);
 
   const getImageUrl = (imagePath) => {
     if (!imagePath)
-      return "https://via.placeholder.com/400x300?text=Luxury+Room";
+      return "https://via.placeholder.com/400x300?text=Luxury+Item";
     if (imagePath.startsWith("http")) return imagePath;
     return `${BACKEND_URL}${imagePath}`;
   };
 
+  // Top 3 items slice kar rahe hain
   const featuredRooms = rooms.slice(0, 3);
+  const featuredFood = foods.slice(0, 3);
 
   return (
-    <div className="main-container">
-      {/* HERO SECTION - (Same as before) */}
-      <div className="hero-container">
-        <div className="overlay"></div>
-        <nav className="navbar">
-          <div className="logo">SAMRAT</div>
-          <ul className="nav-links">
-            <li onClick={() => navigate("/")}>Home</li>
-            <li onClick={() => navigate("/rooms")}>Suites</li>
-            <li>Dining</li>
-            <li>Contact</li>
-          </ul>
-          <button className="nav-btn" onClick={() => navigate("/rooms")}>
+    <div className="hm-main-wrapper">
+      {/* --- HERO SECTION --- */}
+      <div className="hm-hero">
+        <div className="hm-hero-overlay"></div>
+        <nav className="hm-navbar">
+          <div className="hm-logo">SAMRAT</div>
+          <div className="hm-nav-links">
+            {/* Optional: Add links if needed */}
+          </div>
+          <button className="hm-nav-btn" onClick={() => navigate("/rooms")}>
             Book Now
           </button>
         </nav>
 
-        <div className="perspective-container">
-          <div className="card-3d">
-            <div className="content-wrapper">
-              <span className="hotel-badge">Est. 2024</span>
-              <h1 className="title">
-                THE <br /> <span className="highlight">SAMRAT</span> PALACE
+        <div className="hm-3d-stage">
+          <div className="hm-3d-card">
+            <div className="hm-glass-shine"></div>
+            <div className="hm-content-inner">
+              <span className="hm-badge">Since 2024</span>
+              <h1 className="hm-title">
+                ROYAL <span className="hm-gold-text">SAMRAT</span> <br /> LIVING
               </h1>
-              <div className="divider-design">
-                <span className="line"></span>
-                <span className="diamond">♦</span>
-                <span className="line"></span>
+              <div className="hm-separator">
+                <span className="hm-dot"></span>
+                <span className="hm-line"></span>
+                <span className="hm-dot"></span>
               </div>
-              <p className="subtitle">
-                Luxury Hotel | Highway Location | City Comfort
-              </p>
-              <div className="button-group">
-                <button
-                  className="cta-button primary"
-                  onClick={() => navigate("/rooms")}
-                >
-                  Book Your Stay
-                </button>
-              </div>
+              <p className="hm-subtitle">Where Luxury Meets Heritage</p>
+              <button className="hm-cta-btn" onClick={() => navigate("/rooms")}>
+                Explore Suites
+              </button>
             </div>
           </div>
         </div>
       </div>
 
       {/* --- FEATURED ROOMS SECTION --- */}
-      <section className="rooms-section">
-        <div className="section-header">
-          <span className="sub-heading">Accommodations</span>
-          <h2 className="section-title">Royal Stays</h2>
-          <div className="gold-divider"></div>
+      <section className="hm-section">
+        <div className="hm-section-header">
+          <h2 className="hm-heading">Exquisite Stays</h2>
+          <p className="hm-sub-heading">Experience the comfort of kings</p>
         </div>
 
         {loading ? (
-          <div className="loading-text">Loading Royal Suites...</div>
+          <div className="hm-loading">
+            <div className="hm-spinner"></div>
+          </div>
         ) : (
           <>
-            <div className="rooms-grid">
+            <div className="hm-grid">
               {featuredRooms.length > 0 ? (
                 featuredRooms.map((room) => (
-                  <div className="room-card" key={room._id}>
-                    <div className="img-wrapper">
+                  <div className="hm-card" key={room._id}>
+                    <div className="hm-img-box">
                       <img
                         src={getImageUrl(room.images?.[0])}
                         alt={room.title}
+                        className="hm-img"
                       />
-                      {/* Price tag ko image ke andar hi rakha hai */}
-                      <div className="price-tag">₹{room.pricePerNight}</div>
+                      <div className="hm-price-badge">
+                        ₹{room.pricePerNight}
+                      </div>
                     </div>
-
-                    <div className="room-info">
-                      <h3 className="room-title">{room.title}</h3>
-                      <div className="divider-small"></div>
-
-                      <p className="room-desc">
-                        {room.desc?.substring(0, 60)}...
+                    <div className="hm-card-body">
+                      <h3 className="hm-room-title">{room.title}</h3>
+                      <p className="hm-room-desc">
+                        {room.desc?.substring(0, 70)}...
                       </p>
-
-                      <div className="card-footer">
-                        <div className="amenity-item">
-                          {/* Icon Style */}
+                      <div className="hm-card-footer">
+                        <span className="hm-amenity">
                           {room.fastFoodAvailable
-                            ? "🍔 Fast Food"
+                            ? "🍔 Dining"
                             : "☕ Breakfast"}
-                        </div>
-
+                        </span>
                         <button
-                          className="view-details-btn"
+                          className="hm-details-btn"
                           onClick={() => navigate(`/rooms/${room._id}`)}
                         >
-                          VIEW DETAILS ➝
+                          View Room
                         </button>
                       </div>
                     </div>
                   </div>
                 ))
               ) : (
-                <p className="no-rooms">No rooms available at the moment.</p>
+                <p className="hm-no-data">No rooms available.</p>
+              )}
+            </div>
+            <div className="hm-action-area">
+              <button
+                className="hm-view-all-btn"
+                onClick={() => navigate("/rooms")}
+              >
+                View All Collections
+              </button>
+            </div>
+          </>
+        )}
+      </section>
+
+      {/* --- NEW: RESTAURANT / DINING SECTION --- */}
+      {/* Added 'hm-section-alt' for slightly different background if defined in CSS */}
+      <section className="hm-section hm-section-alt">
+        <div className="hm-section-header">
+          <h2 className="hm-heading">Royal Cuisine</h2>
+          <p className="hm-sub-heading">Taste the Legacy of Samrat</p>
+        </div>
+
+        {loading ? (
+          <div className="hm-loading">
+            <div className="hm-spinner"></div>
+          </div>
+        ) : (
+          <>
+            <div className="hm-grid">
+              {featuredFood.length > 0 ? (
+                featuredFood.map((food) => (
+                  <div className="hm-card" key={food._id}>
+                    <div className="hm-img-box">
+                      {/* Assuming food object has 'image' property */}
+                      <img
+                        src={getImageUrl(food.image)}
+                        alt={food.name}
+                        className="hm-img"
+                      />
+                      <div className="hm-price-badge">₹{food.price}</div>
+                    </div>
+
+                    <div className="hm-card-body">
+                      <h3 className="hm-room-title">{food.name}</h3>
+                      <p className="hm-room-desc">
+                        {/* Description or Category */}
+                        {food.description
+                          ? food.description.substring(0, 60)
+                          : food.category}
+                        ...
+                      </p>
+
+                      <div className="hm-card-footer">
+                        <span className="hm-amenity">
+                          🍽 {food.category || "Special"}
+                        </span>
+                        <button
+                          className="hm-details-btn"
+                          onClick={() => navigate("/restaurant")} // Navigates to full menu
+                        >
+                          Order Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="hm-no-data">Menu updating shortly.</p>
               )}
             </div>
 
-            <div className="view-all-container">
+            <div className="hm-action-area">
               <button
-                className="view-all-btn"
-                onClick={() => navigate("/rooms")}
+                className="hm-view-all-btn"
+                onClick={() => navigate("/restaurant")}
               >
-                VIEW ALL ROOMS
+                View Full Menu
               </button>
             </div>
           </>

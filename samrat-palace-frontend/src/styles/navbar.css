@@ -1,9 +1,26 @@
-/* navbar.css */
+/* =========================================
+   1. FONTS & VARIABLES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Manrope:wght@400;600;700&display=swap');
 
-/* Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap');
+:root {
+  --primary-gold: #d4af37;
+  /* Royal Gold */
+  --gold-hover: #f3e5ab;
+  /* Light Gold */
+  --text-light: #f5f5f5;
+  /* Off White */
+  --dark-bg: #0f172a;
+  /* Deep Blue/Black */
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --danger: #ef4444;
+  /* Red for Logout */
+}
 
-/* --- MAIN NAVBAR CONTAINER --- */
+/* =========================================
+   2. MAIN NAVBAR CONTAINER
+   ========================================= */
 .main-navbar {
   position: sticky;
   top: 0;
@@ -11,39 +28,47 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
-  background: rgba(10, 10, 10, 0.7);
-  /* Transparent Dark */
-  backdrop-filter: blur(15px);
-  /* Strong Glass Blur */
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.4s ease-in-out;
-  font-family: 'Poppins', sans-serif;
+  padding: 1rem 3rem;
+  width: 100%;
+
+  /* Glassmorphism Effect */
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Scrolled Effect (Thoda compact ho jayega scroll karne par) */
+/* Scrolled State - More Compact & Solid */
 .main-navbar.scrolled {
-  padding: 10px 40px;
-  background: rgba(10, 10, 10, 0.95);
+  padding: 0.8rem 3rem;
+  background: rgba(10, 10, 15, 0.95);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid #ffc107;
+  border-bottom: 1px solid var(--primary-gold);
 }
 
-/* --- LOGO SECTION --- */
+/* =========================================
+   3. LOGO SECTION
+   ========================================= */
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 13px;
-  cursor: pointer;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo a {
+  display: flex;
+  align-items: center;
 }
 
 .logo-img {
-  width: 74px;
-  height: 50px;
+  width: 50px;
+  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 5px rgba(255, 193, 7, 0.5));
-  transition: transform 0.3s;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+  transition: transform 0.4s ease;
 }
 
 .nav-logo:hover .logo-img {
@@ -51,120 +76,181 @@
 }
 
 .logo-text h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  color: #fff;
+  font-family: 'Cinzel', serif;
+  /* Royal Font */
+  font-size: 1.4rem;
+  color: var(--text-light);
   margin: 0;
+  line-height: 1.2;
   letter-spacing: 1px;
-  line-height: 1;
-  text-align: center;
 }
 
-.logo-text h2 span {
-  color: #ffc107;
-  font-weight: 400;
-}
-
-.logo-text p {
-  font-size: 0.7rem;
-  color: #aaa;
-  margin: 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-/* --- LINKS SECTION --- */
+/* =========================================
+   4. NAVIGATION LINKS
+   ========================================= */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* Individual Link Styling */
+/* Link Base Style */
 .nav-links li a {
   display: flex;
   align-items: center;
   gap: 8px;
-  /* Icon aur Text ke beech gap */
-  text-decoration: none;
-  color: #e0e0e0;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.95rem;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 8px;
+  font-weight: 600;
+  color: #cccccc;
+  /* Muted text initially */
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 50px;
   transition: all 0.3s ease;
   position: relative;
 }
 
-/* Icon Styling */
+/* Icons Animation */
 .nav-links li a svg {
-  transition: transform 0.3s;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
 }
 
-/* Hover Effects */
+/* Hover Effect */
 .nav-links li a:hover {
-  color: #ffc107;
+  color: var(--primary-gold);
   background: rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
 }
 
 .nav-links li a:hover svg {
-  transform: scale(1.2);
-  /* Icon bada hoga */
+  transform: translateY(-2px);
+  /* Icon bounces up */
 }
 
-/* Active State (Current Page) */
+/* Active Page Style */
 .nav-links li a.active {
-  color: #ffc107;
+  color: var(--dark-bg);
+  background: var(--primary-gold);
   font-weight: 700;
-  background: rgba(255, 193, 7, 0.1);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
 }
 
-/* --- 3D LOGIN BUTTON --- */
+.nav-links li a.active svg {
+  stroke-width: 2.5px;
+}
+
+/* =========================================
+   5. BUTTONS (LOGIN & LOGOUT)
+   ========================================= */
+
+/* Login Button (3D Effect) */
 .nav-btn-3d {
-  background: linear-gradient(135deg, #ffc107, #ff9800);
-  color: #1a1d21 !important;
-  font-weight: 700 !important;
-  padding: 10px 25px !important;
-  border-radius: 50px;
-  box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   gap: 8px;
+  background: linear-gradient(135deg, var(--primary-gold) 0%, #b8860b 100%);
+  color: #000 !important;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  box-shadow:
+    0 4px 0 #8a6e0a,
+    /* 3D bottom edge */
+    0 10px 10px rgba(0, 0, 0, 0.2);
+  /* Drop shadow */
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .nav-btn-3d:hover {
-  transform: translateY(-3px) scale(1.05) !important;
-  box-shadow: 0 10px 25px rgba(255, 152, 0, 0.6) !important;
-  background: linear-gradient(135deg, #ffca28, #ffb74d);
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 #8a6e0a,
+    0 15px 15px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
 }
 
 .nav-btn-3d:active {
-  transform: translateY(1px) !important;
-  box-shadow: 0 2px 5px rgba(255, 152, 0, 0.4) !important;
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 0 #8a6e0a,
+    0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* --- MOBILE RESPONSIVE --- */
-@media (max-width: 1100px) {
+/* Logout Button (Replaces Inline Styles) */
+.nav-btn-logout {
+  background: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: 'Manrope', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.nav-btn-logout:hover {
+  background: var(--danger);
+  color: white;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+/* =========================================
+   6. RESPONSIVENESS
+   ========================================= */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 1200px) {
+  .main-navbar {
+    padding: 1rem 2rem;
+  }
+
+  .nav-links {
+    gap: 0.8rem;
+  }
+
+  .nav-links li a {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 992px) {
   .main-navbar {
     flex-direction: column;
-    padding: 15px;
-    gap: 15px;
+    padding: 1rem;
+    gap: 1rem;
   }
 
   .nav-links {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    width: 100%;
   }
 
-  .logo-text p {
-    display: none;
+  .nav-logo {
+    margin-bottom: 5px;
   }
 
-  /* Choti screen par tagline chupayein */
+  /* Optional: Hide large text on small mobile for cleaner look */
+  @media (max-width: 480px) {
+    .logo-text h2 {
+      font-size: 1.1rem;
+    }
+  }
 }

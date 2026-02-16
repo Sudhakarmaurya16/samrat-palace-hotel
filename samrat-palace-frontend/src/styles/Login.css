@@ -1,191 +1,94 @@
-/* =========================================
-   VARIABLES
-   ========================================= */
-:root {
-    --gold: #d4af37;
-    --gold-hover: #f1c40f;
-    --dark-overlay: rgba(0, 0, 0, 0.75);
-    --glass-bg: rgba(20, 20, 20, 0.85);
-    --border-color: rgba(212, 175, 55, 0.3);
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Poppins', sans-serif;
-}
-
-/* =========================================
-     BACKGROUND
-     ========================================= */
-.login-container {
-    height: 100vh;
-    width: 100%;
-    /* Luxury Hotel Room Background */
-    background: url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1600&q=80') no-repeat center center/cover;
-    position: relative;
-    font-family: var(--font-body);
-}
-
-.login-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--dark-overlay);
+/* forms.css */
+.auth-section {
+    min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
-    backdrop-filter: blur(8px);
+    align-items: center;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    padding: 20px;
 }
 
-/* =========================================
-     CARD DESIGN
-     ========================================= */
-.login-card {
+.auth-card-3d {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 3rem;
+    border-radius: 16px;
     width: 100%;
     max-width: 400px;
-    background: var(--glass-bg);
-    border: 1px solid var(--border-color);
-    padding: 40px 30px;
-    border-radius: 16px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.5s ease-out;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    /* Gold Border subtle */
     text-align: center;
+    backdrop-filter: blur(10px);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.auth-title {
+    color: #d4af37;
+    /* Gold */
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Logo */
-.hotel-logo {
-    font-family: var(--font-heading);
-    color: var(--gold);
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-}
-
-/* Toggle Buttons */
-.auth-toggle {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-}
-
-.auth-toggle button {
-    background: none;
-    border: none;
-    color: #aaa;
-    font-size: 1rem;
-    padding-bottom: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s;
-    flex: 1;
-}
-
-.auth-toggle button.active {
-    color: var(--gold);
-    border-bottom: 2px solid var(--gold);
-}
-
-.auth-toggle button:hover {
-    color: #fff;
-}
-
-/* Header */
-.login-header h1 {
-    font-family: var(--font-heading);
-    color: #fff;
-    margin: 0 0 5px 0;
-    font-size: 1.8rem;
-}
-
-.login-header p {
-    color: #bbb;
+.auth-subtitle {
+    color: #888;
     font-size: 0.9rem;
-    margin-bottom: 25px;
+    margin-bottom: 2rem;
 }
 
-/* Inputs */
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 1.2rem;
 }
 
 .input-group input {
     width: 100%;
     padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #2a2a2a;
+    border: 1px solid #444;
     border-radius: 8px;
     color: #fff;
-    font-size: 0.95rem;
+    font-size: 1rem;
     outline: none;
     transition: 0.3s;
 }
 
 .input-group input:focus {
-    border-color: var(--gold);
-    background: rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+    background: #333;
 }
 
-.input-group input::placeholder {
-    color: #666;
-}
-
-/* Button */
-.login-btn {
+.auth-btn {
     width: 100%;
-    padding: 14px;
-    margin-top: 10px;
-    background: linear-gradient(135deg, var(--gold), #b38b3f);
+    padding: 12px;
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    border: none;
+    border-radius: 8px;
     color: #000;
     font-weight: 700;
     font-size: 1rem;
-    border: none;
-    border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-top: 1rem;
 }
 
-.login-btn:hover {
+.auth-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
-    background: var(--gold-hover);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
 }
 
-.login-btn:disabled {
-    background: #444;
-    color: #888;
-    cursor: not-allowed;
-}
-
-/* Footer */
-.login-footer {
-    margin-top: 20px;
-    font-size: 0.9rem;
+.auth-footer {
+    margin-top: 1.5rem;
     color: #aaa;
+    font-size: 0.9rem;
 }
 
-.link {
-    color: var(--gold);
+.auth-footer span {
+    color: #d4af37;
     cursor: pointer;
     font-weight: 600;
+    margin-left: 5px;
+    text-decoration: underline;
 }
 
-.link:hover {
-    text-decoration: underline;
+.auth-footer span:hover {
+    color: #fff;
 }

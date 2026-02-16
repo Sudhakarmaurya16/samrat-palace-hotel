@@ -1,51 +1,42 @@
-/* Google Fonts Import for Luxury Feel */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+/* --- FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@300;500;700&display=swap');
 
-:root {
-    --gold: #d4af37;
-    --gold-light: #f3e5ab;
-    --dark-bg: #0f172a;
-    --glass: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--dark-bg);
+/* --- VARIABLES (Scoped locally) --- */
+.hm-main-wrapper {
+    --hm-gold: #c5a059;
+    --hm-dark: #0a0a0a;
+    --hm-dark-card: #141414;
+    --hm-white: #ffffff;
+    --hm-font-serif: 'Cormorant Garamond', serif;
+    --hm-font-sans: 'Manrope', sans-serif;
+    width: 100%;
     overflow-x: hidden;
+    background-color: var(--hm-dark);
 }
 
-/* --- Hero Container & Background --- */
-.hero-container {
+/* --- HERO SECTION (New 3D Design) --- */
+.hm-hero {
     position: relative;
     height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Hotel Luxury Image Background */
-    background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+    background: url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+    perspective: 1200px;
+    /* Essential for 3D */
     overflow: hidden;
 }
 
-.overlay {
+.hm-hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 100%);
+    inset: 0;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);
     z-index: 1;
 }
 
-/* --- Navigation --- */
-.navbar {
+/* Navbar Scoped */
+.hm-navbar {
     position: absolute;
     top: 0;
     width: 100%;
@@ -56,478 +47,556 @@ body {
     z-index: 10;
 }
 
-.logo {
-    font-family: 'Cinzel', serif;
-    color: var(--gold);
-    font-size: 1.8rem;
+.hm-logo {
+    font-family: var(--hm-font-serif);
+    color: var(--hm-gold);
+    font-size: 2rem;
     font-weight: 700;
     letter-spacing: 2px;
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-links li {
-    color: #fff;
-    cursor: pointer;
-    font-size: 0.9rem;
+.hm-nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--hm-gold);
+    color: var(--hm-white);
+    padding: 10px 25px;
+    font-family: var(--hm-font-sans);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: color 0.3s;
-}
-
-.nav-links li:hover {
-    color: var(--gold);
-}
-
-.nav-btn {
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 0.5rem 1.5rem;
-    text-transform: uppercase;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: 0.3s;
 }
 
-.nav-btn:hover {
-    background: var(--gold);
-    color: #000;
+.hm-nav-btn:hover {
+    background: var(--hm-gold);
+    color: black;
 }
 
-/* --- 3D Perspective Wrapper --- */
-.perspective-container {
-    perspective: 1000px;
-    /* Creates depth */
+/* --- 3D CARD ANIMATION --- */
+.hm-3d-stage {
     z-index: 5;
+    transform-style: preserve-3d;
 }
 
-/* --- Main 3D Card (Glassmorphism) --- */
-.card-3d {
-    background: var(--glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    padding: 4rem;
-    border-radius: 20px;
+.hm-3d-card {
+    position: relative;
+    background: rgba(20, 20, 20, 0.65);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    /* Gold border low opacity */
+    padding: 4rem 3rem;
+    border-radius: 4px;
+    /* Sharp luxury corners */
     text-align: center;
     max-width: 600px;
     box-shadow:
-        0 25px 45px rgba(0, 0, 0, 0.5),
-        inset 0 0 15px rgba(255, 255, 255, 0.05);
+        0 20px 50px rgba(0, 0, 0, 0.8),
+        inset 0 0 30px rgba(0, 0, 0, 0.5);
 
-    /* The 3D Animation */
+    /* The Animation */
+    animation: hm-float 8s ease-in-out infinite;
     transform-style: preserve-3d;
-    animation: floatCard 6s ease-in-out infinite;
 }
 
-@keyframes floatCard {
+@keyframes hm-float {
 
     0%,
     100% {
-        transform: translateY(0) rotateX(0deg);
+        transform: rotateX(0deg) rotateY(0deg) translateY(0);
+    }
+
+    25% {
+        transform: rotateX(5deg) rotateY(-5deg) translateY(-10px);
+    }
+
+    75% {
+        transform: rotateX(-5deg) rotateY(5deg) translateY(-10px);
+    }
+}
+
+/* Glass Shine Effect */
+.hm-glass-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-25deg);
+    animation: hm-shine 6s infinite;
+    pointer-events: none;
+}
+
+@keyframes hm-shine {
+
+    0%,
+    40% {
+        left: -100%;
     }
 
     50% {
-        transform: translateY(-20px) rotateX(2deg);
+        left: 200%;
+    }
+
+    100% {
+        left: 200%;
     }
 }
 
-/* --- Content Styling --- */
-.hotel-badge {
-    display: inline-block;
-    color: var(--gold);
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    border-bottom: 1px solid var(--gold);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
+/* 3D Content popping out */
+.hm-content-inner {
+    transform: translateZ(40px);
+    /* Pops text out of card */
 }
 
-.title {
-    font-family: 'Cinzel', serif;
+.hm-badge {
+    display: inline-block;
+    color: #aaa;
+    font-family: var(--hm-font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.hm-title {
+    font-family: var(--hm-font-serif);
     font-size: 3.5rem;
     color: white;
     line-height: 1.1;
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     margin-bottom: 1rem;
-    transform: translateZ(50px);
-    /* Pops text out in 3D */
 }
 
-.title .highlight {
-    color: var(--gold);
+.hm-gold-text {
+    color: var(--hm-gold);
+    font-style: italic;
 }
 
-.divider-design {
+.hm-separator {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     margin: 1.5rem 0;
-    opacity: 0.8;
 }
 
-.divider-design .line {
-    height: 1px;
+.hm-line {
     width: 50px;
-    background: var(--gold);
+    height: 1px;
+    background: var(--hm-gold);
 }
 
-.divider-design .diamond {
-    color: var(--gold);
-    font-size: 1.2rem;
+.hm-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--hm-gold);
+    transform: rotate(45deg);
 }
 
-.subtitle {
-    color: #e0e0e0;
-    font-size: 1rem;
+.hm-subtitle {
+    color: #ddd;
+    font-family: var(--hm-font-sans);
     font-weight: 300;
-    letter-spacing: 1px;
     margin-bottom: 2.5rem;
-    transform: translateZ(30px);
 }
 
-/* --- Features Grid --- */
-.features-grid {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
-    transform: translateZ(40px);
-}
-
-.feature-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #fff;
-    font-size: 0.8rem;
-    gap: 0.5rem;
-}
-
-.feature-item .icon {
-    font-style: normal;
-    font-size: 1.5rem;
-    filter: drop-shadow(0 0 5px var(--gold));
-}
-
-/* --- Buttons --- */
-.button-group {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    transform: translateZ(60px);
-    /* Buttons pop out most */
-}
-
-.cta-button {
-    padding: 1rem 2rem;
+.hm-cta-btn {
+    background: var(--hm-gold);
+    color: #111;
+    border: none;
+    padding: 1rem 3rem;
     font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 1px;
-    border: none;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s;
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
 }
 
-.cta-button.primary {
-    background: linear-gradient(45deg, var(--gold), #b8860b);
-    color: #000;
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+.hm-cta-btn:hover {
+    background: white;
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
 }
 
-.cta-button.secondary {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-}
 
-.cta-button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* --- Decorative Floating Shapes (Abstract 3D) --- */
-.floating-shape {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    z-index: 2;
-    animation: floatOrb 10s infinite alternate;
-}
-
-.orb-1 {
-    width: 300px;
-    height: 300px;
-    background: rgba(212, 175, 55, 0.2);
-    top: -50px;
-    left: -50px;
-}
-
-.orb-2 {
-    width: 400px;
-    height: 400px;
-    background: rgba(20, 50, 200, 0.2);
-    bottom: -100px;
-    right: -50px;
-    animation-delay: -5s;
-}
-
-@keyframes floatOrb {
-    0% {
-        transform: translate(0, 0);
-    }
-
-    100% {
-        transform: translate(30px, 50px);
-    }
-}
-
-/* --- Mobile Responsive --- */
-@media (max-width: 768px) {
-    .title {
-        font-size: 2.5rem;
-    }
-
-    .card-3d {
-        padding: 2rem;
-        margin: 0 1rem;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    /* Simple hide for mobile example */
-    .features-grid {
-        gap: 1rem;
-    }
-}
-
-/* =========================================
-   UPDATED ROOM CARD DESIGN (Reference Style)
-   ========================================= */
-
-.rooms-section {
+/* --- ROOMS SECTION (Scoped) --- */
+.hm-section {
     padding: 5rem 10%;
-    /* Dark background maintained for section */
-    background-color: #0b1120;
+    background: #0f0f0f;
     position: relative;
-    z-index: 2;
 }
 
-.rooms-grid {
+.hm-section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.hm-heading {
+    font-family: var(--hm-font-serif);
+    font-size: 2.5rem;
+    color: var(--hm-gold);
+    margin-bottom: 0.5rem;
+}
+
+.hm-sub-heading {
+    font-family: var(--hm-font-sans);
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Grid Layout */
+.hm-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
 }
 
-/* --- Card Container (White look like image) --- */
-.room-card {
-    background: #ffffff;
-    /* White Card */
-    border-radius: 20px;
+/* --- NEW CARD DESIGN (Dark Luxury) --- */
+.hm-card {
+    background: var(--hm-dark-card);
+    border: 1px solid #222;
+    transition: transform 0.4s ease, border-color 0.4s ease;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.room-card:hover {
+.hm-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border-color: var(--hm-gold);
 }
 
-/* --- Image Area --- */
-.img-wrapper {
-    width: 100%;
-    height: 220px;
-    /* Thoda height adjust kiya */
-    overflow: hidden;
+.hm-img-box {
     position: relative;
+    height: 250px;
+    overflow: hidden;
 }
 
-.img-wrapper img {
+.hm-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.7s ease;
+    filter: brightness(0.9);
 }
 
-.room-card:hover .img-wrapper img {
+.hm-card:hover .hm-img {
     transform: scale(1.1);
+    filter: brightness(1.1);
 }
 
-/* Price Tag Redesigned */
-.price-tag {
+.hm-price-badge {
     position: absolute;
     bottom: 0;
-    right: 0;
-    background: var(--gold);
+    left: 0;
+    background: var(--hm-gold);
     color: #000;
-    padding: 8px 16px;
+    padding: 8px 15px;
     font-weight: 700;
+    font-family: var(--hm-font-sans);
     font-size: 1rem;
-    border-top-left-radius: 15px;
-    box-shadow: -5px -5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Card Content (The UI Fix) --- */
-.room-info {
-    padding: 2rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Center alignment like image */
-    text-align: center;
+.hm-card-body {
+    padding: 1.5rem;
+    text-align: left;
 }
 
-/* Green/Royal Title like image */
-.room-title {
-    font-family: 'Cinzel', serif;
-    color: #047a40;
-    /* Reference Green Color */
-    font-size: 1.6rem;
-    font-weight: 700;
+.hm-room-title {
+    color: white;
+    font-family: var(--hm-font-serif);
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    line-height: 1.2;
 }
 
-/* Small divider visual */
-.divider-small {
-    width: 40px;
-    height: 2px;
-    background-color: #e0e0e0;
-    margin: 0.5rem 0 1rem 0;
-}
-
-.room-desc {
-    color: #666;
-    /* Grey text on white */
+.hm-room-desc {
+    color: #888;
     font-size: 0.9rem;
-    line-height: 1.6;
+    font-family: var(--hm-font-sans);
     margin-bottom: 1.5rem;
-    font-weight: 400;
+    line-height: 1.6;
 }
 
-/* Footer Section */
-.card-footer {
-    width: 100%;
-    margin-top: auto;
-    /* Pushes footer to bottom */
+.hm-card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px dashed #ddd;
-    /* Dashed line like subtle receipts */
-    padding-top: 1.2rem;
+    border-top: 1px solid #222;
+    padding-top: 1rem;
 }
 
-/* Amenity (Breakfast/Burger) */
-.amenity-item {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #a05e2b;
-    /* Brownish/Gold tone for icon text */
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: #fff8e1;
-    /* Light yellow bg for badge */
-    padding: 5px 10px;
-    border-radius: 8px;
-}
-
-/* --- THE BUTTON (Matches Image: Black Pill with Gold Text) --- */
-.view-details-btn {
-    background-color: #111;
-    /* Pitch Black */
-    color: var(--gold);
-    /* Gold Text */
-    border: none;
-    padding: 10px 20px;
+.hm-amenity {
+    color: #bbb;
     font-size: 0.8rem;
-    font-weight: 700;
-    border-radius: 50px;
-    /* Pill Shape */
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-weight: 500;
+    font-family: var(--hm-font-sans);
+}
+
+.hm-details-btn {
+    background: transparent;
+    color: var(--hm-gold);
+    border: 1px solid var(--hm-gold);
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.view-details-btn:hover {
-    background-color: var(--gold);
-    color: #000;
-    transform: translateX(3px);
-    /* Slight move right on hover */
+.hm-details-btn:hover {
+    background: var(--hm-gold);
+    color: black;
 }
 
-/* --- VIEW ALL BUTTON STYLING --- */
-
-.view-all-container {
+/* Action Area */
+.hm-action-area {
+    margin-top: 4rem;
     display: flex;
     justify-content: center;
-    margin-top: 4rem;
-    /* Grid se thoda door */
-    padding-bottom: 2rem;
 }
 
-.view-all-btn {
+.hm-view-all-btn {
     background: transparent;
-    color: var(--gold);
-    border: 2px solid var(--gold);
-    padding: 1rem 3rem;
-    font-family: 'Cinzel', serif;
-    /* Royal font */
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-/* Hover Effect - Gold fill ho jayega */
-.view-all-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background: var(--gold);
-    z-index: -1;
-    transition: width 0.4s ease;
-}
-
-.view-all-btn:hover::before {
-    width: 100%;
-}
-
-.view-all-btn:hover {
-    color: #000;
-    /* Text black ho jayega gold background par */
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-}
-
-/* Loading & No Data Text */
-.loading-text,
-.no-rooms {
     color: white;
+    border-bottom: 1px solid var(--hm-gold);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-bottom: 5px;
+    font-family: var(--hm-font-sans);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hm-view-all-btn:hover {
+    color: var(--hm-gold);
+    letter-spacing: 4px;
+}
+
+/* Loader */
+.hm-loading {
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.hm-spinner {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #333;
+    border-top-color: var(--hm-gold);
+    border-radius: 50%;
+    animation: hm-spin 1s infinite linear;
+}
+
+@keyframes hm-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hm-no-data {
+    color: #888;
     text-align: center;
-    font-size: 1.2rem;
-    font-family: 'Cinzel', serif;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hm-title {
+        font-size: 2.5rem;
+    }
+
+    .hm-3d-card {
+        padding: 2rem 1rem;
+        margin: 0 1rem;
+    }
+}
+
+/* --- Alternate Section Background (For Dining) --- */
+.hm-section-alt {
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    border-top: 1px solid #222;
+}
+
+/* Optional: Button Color variation for food if needed */
+.hm-section-alt .hm-details-btn:hover {
+    background: #fff;
+    /* White hover for food section */
+    color: #000;
+    border-color: #fff;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (Add to bottom)
+   ========================================= */
+
+/* Tablets & Mobile Devices (Max Width: 1024px) */
+@media (max-width: 1024px) {
+    .hm-section {
+        padding: 4rem 5%;
+        /* Thoda kam padding side se */
+    }
+
+    .hm-title {
+        font-size: 3rem;
+        /* Hero Text thoda chota */
+    }
+}
+
+/* Mobile Devices (Max Width: 768px) */
+@media (max-width: 768px) {
+
+    /* --- HERO SECTION ADJUSTMENTS --- */
+    .hm-hero {
+        height: auto;
+        /* Height auto rakhenge taaki content kate nahi */
+        min-height: 100vh;
+        padding-top: 80px;
+        /* Navbar ke liye jagah */
+        padding-bottom: 40px;
+    }
+
+    .hm-navbar {
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.8);
+        /* Mobile pe navbar dark background lega readability ke liye */
+    }
+
+    .hm-logo {
+        font-size: 1.5rem;
+        /* Logo size adjust */
+    }
+
+    .hm-nav-btn {
+        padding: 8px 15px;
+        font-size: 0.7rem;
+    }
+
+    /* --- 3D CARD FLATTENING (Mobile pe 3D Animation hatana behtar hai) --- */
+    .hm-3d-card {
+        animation: none;
+        /* Float animation stop */
+        transform: none;
+        /* 3D tilt remove */
+        margin: 1rem;
+        padding: 2.5rem 1.5rem;
+        width: auto;
+        /* Full width minus margins */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        /* Simple shadow */
+    }
+
+    /* Glass shine effect hata dein mobile par performance ke liye */
+    .hm-glass-shine {
+        display: none;
+    }
+
+    .hm-content-inner {
+        transform: none;
+        /* Text pop-out effect remove */
+    }
+
+    .hm-title {
+        font-size: 2.2rem;
+        /* Title size mobile readable */
+        line-height: 1.2;
+    }
+
+    .hm-separator {
+        margin: 1rem 0;
+    }
+
+    .hm-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+
+    .hm-cta-btn {
+        width: 100%;
+        /* Button full width */
+        padding: 1rem;
+    }
+
+    /* --- SECTION & GRID ADJUSTMENTS --- */
+    .hm-section {
+        padding: 3rem 1.5rem;
+        /* Padding reduce kiya */
+    }
+
+    .hm-section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .hm-heading {
+        font-size: 2rem;
+    }
+
+    .hm-sub-heading {
+        font-size: 0.8rem;
+    }
+
+    /* Grid ko Single Column karna */
+    .hm-grid {
+        grid-template-columns: 1fr;
+        /* Ek ke niche ek card */
+        gap: 2rem;
+    }
+
+    /* --- CARD ADJUSTMENTS --- */
+    .hm-card {
+        border-radius: 12px;
+    }
+
+    .hm-img-box {
+        height: 220px;
+        /* Image height slightly smaller */
+    }
+
+    .hm-price-badge {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    .hm-room-title {
+        font-size: 1.3rem;
+    }
+
+    .hm-card-footer {
+        padding-top: 0.8rem;
+    }
+}
+
+/* Very Small Mobiles (Max Width: 480px) */
+@media (max-width: 480px) {
+    .hm-title {
+        font-size: 1.8rem;
+    }
+
+    .hm-logo {
+        font-size: 1.3rem;
+    }
+
+    .hm-cta-btn {
+        font-size: 0.8rem;
+    }
+
+    .hm-view-all-btn {
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--hm-gold);
+        /* Full width line */
+    }
 }
