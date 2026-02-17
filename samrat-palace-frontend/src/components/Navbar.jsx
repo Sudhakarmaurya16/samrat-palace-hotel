@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
+// Apna logo path yahan check karein
 import logo from "../assets/samrat.png";
 
 function Navbar() {
@@ -8,14 +9,17 @@ function Navbar() {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [user, setUser] = useState(null);
+  const [click, setClick] = useState(false); // Mobile Menu State
+
+  // Toggle Mobile Menu
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
 
   // Check login status safely
   useEffect(() => {
     const checkUser = () => {
       try {
         const storedUser = localStorage.getItem("user");
-
-        // FIX: Added check for null, undefined (as value), and "undefined" (as string)
         if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
           setUser(JSON.parse(storedUser));
         } else {
@@ -24,18 +28,15 @@ function Navbar() {
       } catch (error) {
         console.error("JSON parsing error in Navbar:", error);
         setUser(null);
-        // Clear corrupt data if parsing fails
         localStorage.removeItem("user");
       }
     };
-
     checkUser();
-
     window.addEventListener("storage", checkUser);
     return () => window.removeEventListener("storage", checkUser);
   }, []);
 
-  // Scroll effect listener
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -50,10 +51,12 @@ function Navbar() {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       setUser(null);
+      closeMobileMenu();
       navigate("/login");
     }
   };
 
+  // SVGs for Icons
   const Icons = {
     Home: (
       <svg
@@ -195,107 +198,144 @@ function Navbar() {
         <line x1="21" y1="12" x2="9" y2="12"></line>
       </svg>
     ),
+    MenuBars: (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    ),
+    CloseTimes: (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    ),
   };
 
   return (
     <nav className={`main-navbar ${scrolled ? "scrolled" : ""}`}>
-      <div className="nav-logo">
-        <Link to="/">
-          <img src={logo} alt="Samrat Palace Logo" className="logo-img" />
-        </Link>
-        <div className="logo-text">
-          <h2>
-            <span style={{ color: "orangered" }}>THE</span> SAMRAT{" "}
-            <span style={{ color: "green" }}>PALACE</span>
-          </h2>
+      <div className="navbar-container">
+        {/* LOGO */}
+        <div className="nav-logo" onClick={closeMobileMenu}>
+          <Link to="/">
+            <img src={logo} alt="Samrat Palace Logo" className="logo-img" />
+          </Link>
+          <div className="logo-text">
+            <h2>
+              <span style={{ color: "orangered" }}>THE</span> SAMRAT{" "}
+              <span style={{ color: "green" }}>PALACE</span>
+            </h2>
+          </div>
         </div>
-      </div>
 
-      <ul className="nav-links">
-        <li>
-          <Link to="/" className={location.pathname === "/" ? "active" : ""}>
-            {Icons.Home} Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/rooms"
-            className={location.pathname === "/rooms" ? "active" : ""}
-          >
-            {Icons.Rooms} Rooms
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/restaurant"
-            className={location.pathname === "/restaurant" ? "active" : ""}
-          >
-            {Icons.Food} Dining
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/table-booking"
-            className={location.pathname === "/table-booking" ? "active" : ""}
-          >
-            {Icons.Table} Tables
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/celebrations"
-            className={location.pathname === "/celebrations" ? "active" : ""}
-          >
-            {Icons.Party} Events
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/catering"
-            className={location.pathname === "/catering" ? "active" : ""}
-          >
-            {Icons.Catering} Catering
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/my-bookings"
-            className={location.pathname === "/my-bookings" ? "active" : ""}
-          >
-            {Icons.Bookings} Dashboard
-          </Link>
-        </li>
+        {/* MOBILE MENU ICON */}
+        <div className="menu-icon" onClick={handleClick}>
+          {click ? Icons.CloseTimes : Icons.MenuBars}
+        </div>
 
-        {user ? (
+        {/* NAV LINKS */}
+        <ul className={click ? "nav-links active" : "nav-links"}>
           <li>
-            <button
-              onClick={handleLogout}
-              className="nav-btn-3d"
-              style={{
-                background: "transparent",
-                border: "1px solid red",
-                color: "red",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                gap: "5px",
-                padding: "8px 15px",
-                borderRadius: "5px",
-                fontSize: "1rem",
-                fontWeight: "bold",
-              }}
+            <Link
+              to="/"
+              className={location.pathname === "/" ? "active" : ""}
+              onClick={closeMobileMenu}
             >
-              {Icons.Logout} Logout
-            </button>
-          </li>
-        ) : (
-          <li>
-            <Link to="/login" className="nav-btn-3d">
-              {Icons.Login} Login
+              {Icons.Home} Home
             </Link>
           </li>
-        )}
-      </ul>
+          <li>
+            <Link
+              to="/rooms"
+              className={location.pathname === "/rooms" ? "active" : ""}
+              onClick={closeMobileMenu}
+            >
+              {Icons.Rooms} Rooms
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/restaurant"
+              className={location.pathname === "/restaurant" ? "active" : ""}
+              onClick={closeMobileMenu}
+            >
+              {Icons.Food} Dining
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/table-booking"
+              className={location.pathname === "/table-booking" ? "active" : ""}
+              onClick={closeMobileMenu}
+            >
+              {Icons.Table} Tables
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/celebrations"
+              className={location.pathname === "/celebrations" ? "active" : ""}
+              onClick={closeMobileMenu}
+            >
+              {Icons.Party} Events
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/catering"
+              className={location.pathname === "/catering" ? "active" : ""}
+              onClick={closeMobileMenu}
+            >
+              {Icons.Catering} Catering
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/my-bookings"
+              className={location.pathname === "/my-bookings" ? "active" : ""}
+              onClick={closeMobileMenu}
+            >
+              {Icons.Bookings} Dashboard
+            </Link>
+          </li>
+
+          {/* AUTH BUTTONS */}
+          <li className="auth-li">
+            {user ? (
+              <button onClick={handleLogout} className="nav-btn-logout">
+                {Icons.Logout} Logout
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="nav-btn-3d"
+                onClick={closeMobileMenu}
+              >
+                {Icons.Login} Login
+              </Link>
+            )}
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 }

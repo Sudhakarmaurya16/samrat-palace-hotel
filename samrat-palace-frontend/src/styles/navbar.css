@@ -5,17 +5,12 @@
 
 :root {
   --primary-gold: #d4af37;
-  /* Royal Gold */
   --gold-hover: #f3e5ab;
-  /* Light Gold */
   --text-light: #f5f5f5;
-  /* Off White */
   --dark-bg: #0f172a;
-  /* Deep Blue/Black */
-  --glass-bg: rgba(15, 23, 42, 0.75);
+  --glass-bg: rgba(15, 23, 42, 0.9);
   --glass-border: rgba(255, 255, 255, 0.1);
   --danger: #ef4444;
-  /* Red for Logout */
 }
 
 /* =========================================
@@ -25,27 +20,27 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 3rem;
   width: 100%;
-
-  /* Glassmorphism Effect */
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--glass-border);
-
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Scrolled State - More Compact & Solid */
 .main-navbar.scrolled {
-  padding: 0.8rem 3rem;
-  background: rgba(10, 10, 15, 0.95);
+  background: rgba(10, 10, 15, 0.98);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid var(--primary-gold);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* =========================================
@@ -55,137 +50,108 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  cursor: pointer;
+  z-index: 1001;
   text-decoration: none;
 }
 
+/* Logo Image Container - Circle Style */
 .nav-logo a {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 60px;
+  /* Size adjustment */
+  height: 60px;
+  border-radius: 50%;
+  /* Optional: Background if image has transparent bg, remove if not needed */
+  background: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .logo-img {
-  width: 50px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
-  transition: transform 0.4s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  /* Zoom to remove edges */
 }
 
-.nav-logo:hover .logo-img {
-  transform: rotate(10deg) scale(1.1);
-}
-
+/* Logo Text Styling */
 .logo-text h2 {
   font-family: 'Cinzel', serif;
-  /* Royal Font */
   font-size: 1.4rem;
   color: var(--text-light);
   margin: 0;
-  line-height: 1.2;
-  letter-spacing: 1px;
+  line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+  /* Prevent line break on desktop */
 }
 
 /* =========================================
-   4. NAVIGATION LINKS
+   4. NAVIGATION LINKS (DESKTOP)
    ========================================= */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* Link Base Style */
 .nav-links li a {
   display: flex;
   align-items: center;
   gap: 8px;
   font-family: 'Manrope', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #cccccc;
-  /* Muted text initially */
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: 50px;
   transition: all 0.3s ease;
-  position: relative;
 }
 
-/* Icons Animation */
-.nav-links li a svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.3s ease;
-}
-
-/* Hover Effect */
 .nav-links li a:hover {
   color: var(--primary-gold);
   background: rgba(255, 255, 255, 0.05);
 }
 
-.nav-links li a:hover svg {
-  transform: translateY(-2px);
-  /* Icon bounces up */
-}
-
-/* Active Page Style */
 .nav-links li a.active {
   color: var(--dark-bg);
   background: var(--primary-gold);
   font-weight: 700;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
 }
 
-.nav-links li a.active svg {
-  stroke-width: 2.5px;
+/* Menu Icon (Hidden on Desktop) */
+.menu-icon {
+  display: none;
 }
 
 /* =========================================
-   5. BUTTONS (LOGIN & LOGOUT)
+   5. BUTTONS (Login/Logout)
    ========================================= */
-
-/* Login Button (3D Effect) */
 .nav-btn-3d {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background: linear-gradient(135deg, var(--primary-gold) 0%, #b8860b 100%);
   color: #000 !important;
   font-family: 'Manrope', sans-serif;
   font-weight: 700;
-  padding: 10px 24px;
+  padding: 8px 20px;
   border-radius: 50px;
   text-decoration: none;
   border: none;
-  box-shadow:
-    0 4px 0 #8a6e0a,
-    /* 3D bottom edge */
-    0 10px 10px rgba(0, 0, 0, 0.2);
-  /* Drop shadow */
   transition: all 0.2s ease;
-  cursor: pointer;
+  white-space: nowrap;
 }
 
-.nav-btn-3d:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 6px 0 #8a6e0a,
-    0 15px 15px rgba(0, 0, 0, 0.3);
-  filter: brightness(1.1);
-}
-
-.nav-btn-3d:active {
-  transform: translateY(2px);
-  box-shadow:
-    0 2px 0 #8a6e0a,
-    0 5px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Logout Button (Replaces Inline Styles) */
 .nav-btn-logout {
   background: transparent;
   border: 1px solid var(--danger);
@@ -193,64 +159,131 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 8px 18px;
   border-radius: 50px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   font-family: 'Manrope', sans-serif;
   transition: all 0.3s ease;
-}
-
-.nav-btn-logout:hover {
-  background: var(--danger);
-  color: white;
-  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+  white-space: nowrap;
 }
 
 /* =========================================
-   6. RESPONSIVENESS
+   6. MOBILE RESPONSIVE FIXES
    ========================================= */
-
-/* Tablet & Smaller Laptops */
-@media (max-width: 1200px) {
-  .main-navbar {
-    padding: 1rem 2rem;
+@media screen and (max-width: 960px) {
+  .navbar-container {
+    padding: 0.8rem 1rem;
+    /* Adjust padding for mobile */
   }
 
+  /* --- 1. Logo Text Visibility Fix --- */
+  .logo-text {
+    display: block !important;
+    /* Ensure it is visible */
+    margin-left: 5px;
+  }
+
+  .logo-text h2 {
+    font-size: 1rem;
+    /* Smaller font to fit */
+    white-space: normal;
+    /* Allow wrapping if needed */
+    line-height: 1.2;
+  }
+
+  .nav-logo a {
+    width: 50px;
+    /* Slightly smaller logo */
+    height: 50px;
+  }
+
+  /* --- 2. Menu Icon --- */
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1002;
+    color: white;
+  }
+
+  /* --- 3. Mobile Navigation Drawer --- */
   .nav-links {
-    gap: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    /* Hide by default */
+    height: 100vh;
+    /* Full screen height */
+    background: rgba(10, 15, 30, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    transition: all 0.5s ease;
+    justify-content: flex-start;
+    /* Align from top */
+    padding-top: 80px;
+    /* Space for top header */
+    padding-bottom: 100px;
+    /* Space for bottom scroll */
+    overflow-y: auto;
+    /* Enable scrolling for long menus */
+  }
+
+  .nav-links.active {
+    left: 0;
+    /* Slide in */
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
   }
 
   .nav-links li a {
-    padding: 8px 10px;
-    font-size: 0.85rem;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 12px;
+    font-size: 1.2rem;
+  }
+
+  /* --- 4. Login/Logout Button Fix --- */
+  .auth-li {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem;
+    /* Add bottom margin to prevent cut-off */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-btn-3d,
+  .nav-btn-logout {
+    width: 60%;
+    padding: 12px 0;
+    font-size: 1.1rem;
   }
 }
 
-/* Mobile Devices */
-@media (max-width: 992px) {
-  .main-navbar {
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
+/* Very Small Screen Adjustments */
+@media (max-width: 400px) {
+  .logo-text h2 {
+    font-size: 0.9rem;
+    /* Even smaller font */
   }
 
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .nav-logo {
-    margin-bottom: 5px;
-  }
-
-  /* Optional: Hide large text on small mobile for cleaner look */
-  @media (max-width: 480px) {
-    .logo-text h2 {
-      font-size: 1.1rem;
-    }
+  .nav-logo a {
+    width: 45px;
+    height: 45px;
   }
 }
